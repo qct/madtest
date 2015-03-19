@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>qct</groupId>
-    <artifactId>mqtest</artifactId>
+    <artifactId>madtest</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>mqtest Maven Webapp</name>
+    <name>madtest Maven Webapp</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -18,6 +18,18 @@
     </properties>
 
     <dependencies>
+        <!-- Netty-->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.0.26.Final</version>
+        </dependency>
+        <!-- Mina -->
+        <dependency>
+            <groupId>org.apache.mina</groupId>
+            <artifactId>mina-core</artifactId>
+            <version>2.0.9</version>
+        </dependency>
         <!-- commons-codec -->
         <dependency>
             <groupId>commons-codec</groupId>
@@ -79,6 +91,6 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>mqtest</finalName>
+        <finalName>madtest</finalName>
     </build>
 </project>
