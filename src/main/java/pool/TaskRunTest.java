@@ -1,6 +1,7 @@
 package pool;
 
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -9,8 +10,10 @@ import java.util.concurrent.TimeUnit;
  */
 public class TaskRunTest {
     public static void main(String[] args) {
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 200, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<Runnable>(5));
-        for (int i = 0; i < 15; i++) {
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+                5, 10, 200, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<Runnable>(5),
+                new ThreadPoolExecutor.DiscardPolicy());
+        for (int i = 0; i < 16; i++) {
             MyTask mytask = new MyTask(i);
             executor.execute(mytask);
             System.out.println("线程池中线程数目：" + executor.getPoolSize() + "，队列中等待执行的任务数目：" +
