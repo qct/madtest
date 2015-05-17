@@ -6,6 +6,9 @@ import org.apache.commons.codec.digest.UnixCrypt;
 import org.apache.commons.codec.net.URLCodec;
 import org.apache.log4j.Logger;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 /**
  * Created by qct on 2015/1/23.
  */
@@ -18,6 +21,7 @@ public class TestEncodeMd5 {
         logger.debug(UnixCrypt.crypt(pwd.getBytes()));//DES
         URLCodec urlCodec = new URLCodec();
         logger.debug(urlCodec.encode("http://www.baidu.com"));
+
     }
 
 }
