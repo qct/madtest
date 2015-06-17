@@ -1,13 +1,19 @@
 package ftp;
 
-import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPReply;
-import org.apache.commons.net.ftp.FTPSClient;
+import org.apache.commons.net.ftp.*;
+import org.apache.commons.net.util.TrustManagerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.net.ssl.*;
+import javax.security.cert.X509Certificate;
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.SocketException;
+import java.security.*;
+import java.security.cert.CertificateException;
 
 /**
  * Created by qct on 2015/6/16.
@@ -17,21 +23,36 @@ public class FtpTest {
     static Logger logger = LoggerFactory.getLogger(FtpTest.class);
 
     public static void main(String[] args) {
-        FTPClient ftp = new FTPSClient(false);
+        FTPSClient ftp = null;
         try {
-            ftp.setControlEncoding("UTF-8");
+            ftp = new FTPSClient(false);
             ftp.connect("10.22.205.104", 21);
-            Boolean isSuccess = ftp.login("123123123", "123123123");
-            logger.debug("FtpUtils.createOrUpdateFile-----------------login---" + isSuccess + "---user:" + ftp.getRemoteAddress() + " password:");
-            ftp.setBufferSize(1024);
-            ftp.enterLocalPassiveMode();
-            //ftp.setControlEncoding("UTF-8");
-            ftp.setFileType(FTPClient.BINARY_FILE_TYPE);
             int reply = ftp.getReplyCode();
             if (!FTPReply.isPositiveCompletion(reply)) {
                 ftp.disconnect();
                 logger.debug("FtpUtils.createOrUpdateFile-----------------isPositiveCompletion----check---failed");
             }
+
+            // Login
+            if (ftp.login("123", "123")) {
+                // Set protection buffer size
+                ftp.execPBSZ(0);
+                // Set data channel protection to private
+                ftp.execPROT("P");
+                // Enter local passive mode
+                ftp.enterLocalPassiveMode();
+                ftp.setBufferSize(1024*1024);
+                ftp.setFileType(FTPClient.BINARY_FILE_TYPE);
+                ftp.setKeepAlive(true);
+            }
+
+            logger.debug("working directory: " + ftp.printWorkingDirectory());
+
+            InputStream is = new ByteArrayInputStream("hello123".getBytes());
+            boolean store = ftp.storeFile("/working/admin/mayamrpass/mrPass_TaskDesc_new_qct.xml", is);
+
+            is.close();
+            logger.debug("store:" + store);
         } catch (SocketException e) {
             e.printStackTrace();
         } catch (IOException e) {
