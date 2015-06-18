@@ -5,8 +5,6 @@ import com.google.common.base.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Set;
-
 /**
  * Created by qct on 2015/5/23.
  */
@@ -14,21 +12,23 @@ public class NullTest {
 
     static Logger logger = LoggerFactory.getLogger(NullTest.class);
 
-    public static void main(String[] args) {
-        Optional<Integer> possible = Optional.of(5);
-        logger.debug("isPresent:{}", possible.isPresent());
-        logger.debug("possible:{}", possible.get());
-        testNull();
-        testNullObject();
-        sayHello(null);
+    public static void main(String[] args) throws Exception {
+//        Optional<Integer> possible = Optional.of(5);
+//        logger.debug("isPresent:{}", possible.isPresent());
+//        logger.debug("possible:{}", possible.get());
+//        testNull();
+//        testNullObject();
+//        sayHello(null);
+
+        testOptional();
     }
 
     public static void testNull() {
         int age = 0;
-        logger.debug("age:{}",age);
+        logger.debug("age:{}", age);
 
         long money = 0;
-        logger.debug("money:{}",money);
+        logger.debug("money:{}", money);
     }
 
     public static void testNullObject() {
@@ -45,4 +45,27 @@ public class NullTest {
         logger.debug("文艺青年说：Hello,{}", name);
     }
 
+
+    public static void testOptional() throws Exception {
+        Optional<Integer> possible = Optional.of(6);
+        Optional<Integer> absentOpt = Optional.absent();
+        Optional<Integer> NullableOpt = Optional.fromNullable(null);
+        Optional<Integer> NoNullableOpt = Optional.fromNullable(10);
+        if (possible.isPresent()) {
+            System.out.println("possible isPresent:" + possible.isPresent());
+            System.out.println("possible value:" + possible.get());
+        }
+        if (absentOpt.isPresent()) {
+            System.out.println("absentOpt isPresent:" + absentOpt.isPresent());
+            ;
+        }
+        if (NullableOpt.isPresent()) {
+            System.out.println("fromNullableOpt isPresent:" + NullableOpt.isPresent());
+            ;
+        }
+        if (NoNullableOpt.isPresent()) {
+            System.out.println("NoNullableOpt isPresent:" + NoNullableOpt.isPresent());
+            ;
+        }
+    }
 }
