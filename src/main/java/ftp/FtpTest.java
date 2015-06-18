@@ -1,21 +1,18 @@
 package ftp;
 
-import org.apache.commons.net.ftp.*;
-import org.apache.commons.net.util.TrustManagerUtils;
+import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPReply;
+import org.apache.commons.net.ftp.FTPSClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.net.ssl.*;
-import javax.security.cert.X509Certificate;
 import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.SocketException;
-import java.security.*;
-import java.security.cert.CertificateException;
 
 /**
+ * connect to FTP over TLS
  * Created by qct on 2015/6/16.
  */
 public class FtpTest {
