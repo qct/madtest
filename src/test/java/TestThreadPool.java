@@ -3,6 +3,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import pool.StartTaskThread;
 
+import javax.sql.DataSource;
+
 /**
  * Created by qct on 2015/5/6.
  */
@@ -10,6 +12,9 @@ public class TestThreadPool extends BaseTest {
 
     private static int produceTaskSleepTime = 4000;
     private static int produceTaskMaxNumber = 10;
+
+    @Autowired
+    DataSource dataSource;
 
     @Autowired
     private ThreadPoolTaskExecutor threadPoolTaskExecutor;
