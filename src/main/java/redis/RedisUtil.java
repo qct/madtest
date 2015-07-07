@@ -20,23 +20,22 @@ public class RedisUtil {
      * 初始化jedisPool
      */
     private static void initialPool() {
-        String host = REDIS_CONFIG.getString("redis_host", "localhost");
-        int port = REDIS_CONFIG.getInt("redis_port", 6379);
+        String host = REDIS_CONFIG.getString("redis.master.host", "localhost");
+        int port = REDIS_CONFIG.getInt("redis.master.host", 6379);
 
         try {
             JedisPoolConfig config = new JedisPoolConfig();
 
-            config.setMaxTotal(REDIS_CONFIG.getInt("redis_pool_max_total", config.getMaxTotal()));
-            config.setMaxIdle(REDIS_CONFIG.getInt("redis_pool_max_idle", config.getMaxIdle()));
-            config.setMaxWaitMillis(REDIS_CONFIG.getLong("redis_pool_max_wait_millis", config.getMaxWaitMillis()));
+            config.setMaxTotal(REDIS_CONFIG.getInt("redis.pool.max.total", config.getMaxTotal()));
+            config.setMaxIdle(REDIS_CONFIG.getInt("redis.pool.max.idle", config.getMaxIdle()));
+            config.setMaxWaitMillis(REDIS_CONFIG.getLong("redis.pool.max.wait.millis", config.getMaxWaitMillis()));
             config.setTestOnBorrow(false);
-            int timeout = REDIS_CONFIG.getInt("redis_pool_connection_timeout", 2000);
+            int timeout = REDIS_CONFIG.getInt("redis.pool.connection.timeout", 2000);
 
             jedisPool = new JedisPool(config, host, port, timeout);
         } catch (Exception e) {
             log.error("initialPool-failed:" + host + ":" + port, e);
         }
-
     }
 
     /**
