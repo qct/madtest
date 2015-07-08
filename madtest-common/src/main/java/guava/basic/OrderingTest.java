@@ -1,11 +1,10 @@
 package guava.basic;
 
 import com.google.common.base.Function;
-import com.google.common.base.MoreObjects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
-import com.sun.istack.internal.Nullable;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -20,7 +19,7 @@ public class OrderingTest {
             }
         });
 
-        List<Foo> fooList = Lists.newArrayList(new Foo(),new Foo());
+        List<Foo> fooList = Lists.newArrayList(new Foo(), new Foo());
         System.out.println(ordering.min(fooList));
     }
 }

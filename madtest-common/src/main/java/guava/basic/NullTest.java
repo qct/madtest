@@ -32,7 +32,7 @@ public class NullTest {
     }
 
     public static void testNullObject() {
-        if (null instanceof java.lang.Object) {
+        if (null instanceof Object) {
             logger.debug("null属于java.lang.Object类型");
         } else {
             logger.debug("null不属于java.lang.Object类型");

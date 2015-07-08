@@ -3,7 +3,6 @@ package redis;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.*;
 
 import javax.annotation.Resource;
@@ -853,7 +852,8 @@ public class JedisUtil {
 
     private void returnBrokenResource(ShardedJedis shardedJedis) {
         try {
-            shardedJedisPool.returnBrokenResource(shardedJedis);
+//            shardedJedisPool.returnBrokenResource(shardedJedis);
+            shardedJedis.close();
         } catch (Exception e) {
             logger.error("returnBrokenResource error.", e);
         }
@@ -861,7 +861,8 @@ public class JedisUtil {
 
     private void returnResource(ShardedJedis shardedJedis) {
         try {
-            shardedJedisPool.returnResource(shardedJedis);
+//            shardedJedisPool.returnResource(shardedJedis);
+            shardedJedis.close();
         } catch (Exception e) {
             logger.error("returnResource error.", e);
         }
