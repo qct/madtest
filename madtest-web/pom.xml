@@ -13,10 +13,18 @@
     <url>http://maven.apache.org</url>
 
     <dependencies>
+        <!-- Spring web mvc-->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- Common -->
+        <dependency>
+            <groupId>qct</groupId>
+            <artifactId>madtest-common</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
     <build>
