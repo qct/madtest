@@ -1,7 +1,7 @@
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import pool.StartTaskThread;
+import madtest.common.pool.StartTaskThread;
 
 import javax.sql.DataSource;
 
