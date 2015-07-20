@@ -79,7 +79,10 @@ public class Dom4jTest {
                 "</Task>\n";
 
         Document document = Dom4jUtil.readXML(new ByteArrayInputStream(xml.getBytes()));
-        List<Node> nodes = document.selectNodes("/Task/AppInfo/Version");
-        System.out.println(nodes.get(0).getText());
+//        List<Node> nodes = document.selectNodes("/Task/IfdList/IfdItem");
+        List<Node> nodes = document.selectNodes("/Task/SourceFileList/SourceFile");
+        for(Node node: nodes) {
+            System.out.println(node.getText());
+        }
     }
 }
