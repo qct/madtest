@@ -80,9 +80,26 @@ public class Dom4jTest {
 
         Document document = Dom4jUtil.readXML(new ByteArrayInputStream(xml.getBytes()));
 //        List<Node> nodes = document.selectNodes("/Task/IfdList/IfdItem");
-        List<Node> nodes = document.selectNodes("/Task/SourceFileList/SourceFile");
+        List<Node> nodes = document.selectNodes("/Task/SubTaskList/SubTaskItem/OutputLocalDir");
         for(Node node: nodes) {
-            System.out.println(node.getText());
+            String s = node.getText();
+
+            System.out.println(s.substring(s.lastIndexOf("\\")+1, s.length()));
+
+            System.out.println("path: " + s.substring(0, s.lastIndexOf("\\")));
+            String fileNameWithPlaceholder = s.substring(s.lastIndexOf("\\")+1,s.length());
+            System.out.println("file name with placeholder: " + fileNameWithPlaceholder);
+
+            String placeHolder = fileNameWithPlaceholder.substring(fileNameWithPlaceholder.indexOf("$"), fileNameWithPlaceholder.lastIndexOf("."));
+            System.out.println("placeholder: " + placeHolder);
+
+            int length = Integer.parseInt(placeHolder.substring(2,placeHolder.length()));
+            System.out.println("length: " + length);
+
+            String afterReplace = String.format("%1$0"+length+"d", 12);
+            System.out.println(fileNameWithPlaceholder.replace(placeHolder, afterReplace));
+
+            System.out.println("whole text: " + node.getText());
         }
     }
 }
