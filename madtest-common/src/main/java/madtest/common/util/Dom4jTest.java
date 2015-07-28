@@ -87,7 +87,7 @@ public class Dom4jTest {
             System.out.println(s.substring(s.lastIndexOf("\\")+1, s.length()));
 
             System.out.println("path: " + s.substring(0, s.lastIndexOf("\\")));
-            String fileNameWithPlaceholder = s.substring(s.lastIndexOf("\\")+1,s.length());
+            String fileNameWithPlaceholder = s;//.substring(s.lastIndexOf("\\")+1,s.length());
             System.out.println("file name with placeholder: " + fileNameWithPlaceholder);
 
             String placeHolder = fileNameWithPlaceholder.substring(fileNameWithPlaceholder.indexOf("$"), fileNameWithPlaceholder.lastIndexOf("."));
