@@ -16,7 +16,7 @@
         <!-- Common -->
         <dependency>
             <groupId>qct</groupId>
-            <artifactId>madtest-common</artifactId>
+            <artifactId>madtest-persist</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 
@@ -85,7 +85,7 @@
                     <compilerArgument>-parameters</compilerArgument>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                    <encoding>UTF-8</encoding>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
         </plugins>

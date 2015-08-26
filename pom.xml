@@ -10,6 +10,7 @@
     <modules>
         <module>madtest-web</module>
         <module>madtest-common</module>
+        <module>madtest-persist</module>
     </modules>
 
     <name>madtest</name>
@@ -22,6 +23,7 @@
         <aspectj.version>1.6.12</aspectj.version>
         <org.slf4j-version>1.7.12</org.slf4j-version>
         <java.version>1.8</java.version>
+        <druid-version>1.0.15</druid-version>
     </properties>
 
     <dependencyManagement>
@@ -202,6 +204,20 @@
                 <version>1.0.0</version>
             </dependency>
 
+            <!-- Druid -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid-version}</version>
+            </dependency>
+
+            <!-- Mysql -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>5.1.31</version>
+            </dependency>
+
             <!-- Log -->
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -247,7 +263,7 @@
                         <compilerArgument>-parameters</compilerArgument>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
-                        <encoding>UTF-8</encoding>
+                        <encoding>${project.build.sourceEncoding}</encoding>
                     </configuration>
                 </plugin>
             </plugins>
