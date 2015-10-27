@@ -22,6 +22,7 @@
         <aspectj.version>1.6.12</aspectj.version>
         <org.slf4j-version>1.7.12</org.slf4j-version>
         <java.version>1.8</java.version>
+        <msgpack.version>0.6.12</msgpack.version>
     </properties>
 
     <dependencyManagement>
@@ -31,6 +32,12 @@
                 <groupId>io.netty</groupId>
                 <artifactId>netty-all</artifactId>
                 <version>5.0.0.Alpha2</version>
+            </dependency>
+            <!-- MsgPack -->
+            <dependency>
+                <groupId>org.msgpack</groupId>
+                <artifactId>msgpack</artifactId>
+                <version>${msgpack.version}</version>
             </dependency>
             <!-- Mina -->
             <dependency>
