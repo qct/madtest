@@ -10,7 +10,6 @@
     <modules>
         <module>madtest-web</module>
         <module>madtest-common</module>
-        <module>madtest-persist</module>
     </modules>
 
     <name>madtest</name>
@@ -23,7 +22,7 @@
         <aspectj.version>1.6.12</aspectj.version>
         <org.slf4j-version>1.7.12</org.slf4j-version>
         <java.version>1.8</java.version>
-        <druid-version>1.0.15</druid-version>
+        <msgpack.version>0.6.12</msgpack.version>
     </properties>
 
     <dependencyManagement>
@@ -33,6 +32,12 @@
                 <groupId>io.netty</groupId>
                 <artifactId>netty-all</artifactId>
                 <version>5.0.0.Alpha2</version>
+            </dependency>
+            <!-- MsgPack -->
+            <dependency>
+                <groupId>org.msgpack</groupId>
+                <artifactId>msgpack</artifactId>
+                <version>${msgpack.version}</version>
             </dependency>
             <!-- Mina -->
             <dependency>
@@ -204,20 +209,6 @@
                 <version>1.0.0</version>
             </dependency>
 
-            <!-- Druid -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
-                <version>${druid-version}</version>
-            </dependency>
-
-            <!-- Mysql -->
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>5.1.31</version>
-            </dependency>
-
             <!-- Log -->
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -263,7 +254,7 @@
                         <compilerArgument>-parameters</compilerArgument>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
-                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
             </plugins>

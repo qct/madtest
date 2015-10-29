@@ -18,6 +18,11 @@
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
         </dependency>
+        <!-- MsgPack -->
+        <dependency>
+            <groupId>org.msgpack</groupId>
+            <artifactId>msgpack</artifactId>
+        </dependency>
         <!-- Mina -->
         <dependency>
             <groupId>org.apache.mina</groupId>
