@@ -129,7 +129,8 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
                 || uri.endsWith(".") || INSECURE_URI.matcher(uri).matches()) {
             return null;
         }
-        return System.getProperty("user.dir") + File.separator + uri;
+//        return System.getProperty("user.dir") + File.separator + uri;
+        return "/Users/quchentao" + File.separator + uri;
     }
 
     private static final Pattern ALLOWED_FILE_NAME = Pattern.compile("[A-Za-z0-9][-_A-Za-z0-9\\.]*");
