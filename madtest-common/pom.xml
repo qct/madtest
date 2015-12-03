@@ -123,6 +123,33 @@
             <artifactId>dom4j</artifactId>
         </dependency>
 
+        <!-- JiBx -->
+        <dependency>
+            <groupId>org.jibx</groupId>
+            <artifactId>jibx-run</artifactId>
+            <version>${jibx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jibx</groupId>
+            <artifactId>jibx-extras</artifactId>
+            <version>${jibx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jibx</groupId>
+            <artifactId>jibx-tools</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jibx</groupId>
+            <artifactId>jibx-bind</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jibx</groupId>
+            <artifactId>jibx-schema</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
         <!-- Log -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -162,6 +189,30 @@
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jibx</groupId>
+                <artifactId>jibx-maven-plugin</artifactId>
+                <version>${jibx.version}</version>
+                <configuration>
+                    <schemaBindingDirectory>src/main/java/madtest/common/nettry/study/chapter10/httpxml/jibx</schemaBindingDirectory>
+                    <includeSchemaBindings>
+                        <includeSchemaBindings>*-binding.xml</includeSchemaBindings>
+                    </includeSchemaBindings>
+                    <excludeSchemaBindings>
+                        <excludeSchemaBinding>template-binding.xml</excludeSchemaBinding>
+                    </excludeSchemaBindings>
+                    <interfaceClassNames>
+                        <interfaceClassName>madtest.common.netty.study.chapter10.httpxml.Shipping</interfaceClassName>
+                    </interfaceClassNames>
+                    <verbose>true</verbose>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>jibx-bind</id>
+                        <goals><goal>bind</goal></goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
