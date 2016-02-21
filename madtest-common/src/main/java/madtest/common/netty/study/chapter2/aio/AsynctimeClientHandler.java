@@ -2,13 +2,11 @@ package madtest.common.netty.study.chapter2.aio;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.lang.management.BufferPoolMXBean;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.CompletionHandler;
 import java.util.concurrent.CountDownLatch;
-
 
 
 /**
@@ -55,9 +53,9 @@ public class AsynctimeClientHandler implements Runnable, CompletionHandler<Void,
         client.write(writeBuffer, writeBuffer, new CompletionHandler<Integer, ByteBuffer>() {
             @Override
             public void completed(Integer result, ByteBuffer buffer) {
-                if(buffer.hasRemaining()) {
+                if (buffer.hasRemaining()) {
                     client.write(buffer, buffer, this);
-                }else {
+                } else {
                     ByteBuffer readBuffer = ByteBuffer.allocate(1024);
                     client.read(readBuffer, readBuffer, new CompletionHandler<Integer, ByteBuffer>() {
                         @Override
@@ -77,7 +75,7 @@ public class AsynctimeClientHandler implements Runnable, CompletionHandler<Void,
 
                         @Override
                         public void failed(Throwable exc, ByteBuffer attachment) {
-                            try{
+                            try {
                                 client.close();
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -89,7 +87,7 @@ public class AsynctimeClientHandler implements Runnable, CompletionHandler<Void,
 
             @Override
             public void failed(Throwable exc, ByteBuffer attachment) {
-                try{
+                try {
                     client.close();
                     latch.countDown();
                 } catch (IOException e) {

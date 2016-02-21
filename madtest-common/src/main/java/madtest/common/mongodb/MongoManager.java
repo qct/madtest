@@ -1,12 +1,16 @@
 package madtest.common.mongodb;
 
 import com.google.common.collect.Lists;
+
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
 

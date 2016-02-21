@@ -1,7 +1,8 @@
 package madtest.common.oauth2.service.impl;
 
-import madtest.common.oauth2.service.OAuthService;
 import org.springframework.stereotype.Service;
+
+import madtest.common.oauth2.service.OAuthService;
 
 /**
  * Created by qct on 2015/7/28.

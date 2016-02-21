@@ -11,8 +11,6 @@ public interface Observer {
 
     /**
      * attach with subject to observe
-     *
-     * @param subject
      */
     void setSubject(Subject subject);
 }

@@ -7,6 +7,7 @@ public class IntelFactory implements AbstractFactory {
     public IntelFactory() {
         System.out.println("IntelFactory init---");
     }
+
     @Override
     public Cpu createCpu() {
         return new IntelCpu();

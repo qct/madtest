@@ -18,13 +18,14 @@ Ant build file for JiBX data binding code to schema starter example.
     <condition property="binding-jars-found">
         <and>
             <available file="${maven.home}/bcel/bcel/5.1/bcel-5.1.jar"/>
-            <available file="${jibx-home}/jibx-bind/${jibx.versioin}/jibx-bind-${jibx.versioin}.jar"/>
+            <available
+                    file="${jibx-home}/jibx-bind/${jibx.versioin}/jibx-bind-${jibx.versioin}.jar"/>
             <available file="${jibx-home}/jibx-run/${jibx.versioin}/jibx-run-${jibx.versioin}.jar"/>
         </and>
     </condition>
     <path id="classpath">
         <!--<fileset dir="${jibx-home}">-->
-            <!--<include name="**/*.jar"/>-->
+        <!--<include name="**/*.jar"/>-->
         <!--</fileset>-->
         <!--<file name="${maven.home}/bcel/bcel/5.1/bcel-5.1.jar"/>-->
         <!--<file name="${maven.home}/log4j/log4j/1.2.17/log4j-1.2.17.jar"/>-->
@@ -41,24 +42,28 @@ Ant build file for JiBX data binding code to schema starter example.
     <!-- make sure runtime jars are present -->
     <target name="check-runtime">
         <echo message="-------------->${jibx-home}"></echo>
-        <fail unless="jibx-home">JiBX home directory not found - define JIBX_HOME system property or set path directly
+        <fail unless="jibx-home">JiBX home directory not found - define JIBX_HOME system property or
+            set path directly
             in build.xml file.
         </fail>
-        <fail unless="runtime-jars-found">Required JiBX runtime jar jibx-run.jar was not found in JiBX home lib
+        <fail unless="runtime-jars-found">Required JiBX runtime jar jibx-run.jar was not found in
+            JiBX home lib
             directory (${jibx-home}/lib)
         </fail>
     </target>
 
     <!-- make sure extras jars are present -->
     <target name="check-extras" depends="check-runtime">
-        <fail unless="extras-jar-found">Required JiBX extras jar jibx-extras.jar was not found in JiBX home lib
+        <fail unless="extras-jar-found">Required JiBX extras jar jibx-extras.jar was not found in
+            JiBX home lib
             directory (${jibx-home}/lib)
         </fail>
     </target>
 
     <!-- make sure binding jars are present -->
     <target name="check-binding" depends="check-runtime">
-        <fail unless="binding-jars-found">Required JiBX binding jar jibx-bind.jar or bcel.jar was not found in JiBX home
+        <fail unless="binding-jars-found">Required JiBX binding jar jibx-bind.jar or bcel.jar was
+            not found in JiBX home
             lib directory (${jibx-home}/lib)
         </fail>
     </target>
@@ -78,7 +83,8 @@ Ant build file for JiBX data binding code to schema starter example.
         <echo message="Compiling Java source code"/>
         <delete quiet="true" dir="${basedir}/bin/madtest/common/netty/study/chapter10/httpxml"/>
         <mkdir dir="${basedir}/bin"/>
-        <javac srcdir="${basedir}/src/main/java/madtest/common/netty/study/chapter10/httpxml" destdir="${basedir}/bin"
+        <javac srcdir="${basedir}/src/main/java/madtest/common/netty/study/chapter10/httpxml"
+               destdir="${basedir}/bin"
                debug="on">
             <classpath refid="classpath"/>
         </javac>
@@ -87,7 +93,8 @@ Ant build file for JiBX data binding code to schema starter example.
     <!-- generate default binding and schema -->
     <target name="bindgen">
         <echo message="Running BindGen tool"/>
-        <java classpathref="classpath" fork="true" failonerror="true" classname="org.jibx.binding.generator.BindGen">
+        <java classpathref="classpath" fork="true" failonerror="true"
+              classname="org.jibx.binding.generator.BindGen">
             <arg value="-s"/>
             <arg value="${basedir}/src/main/java/madtest/common/netty/study/chapter10/httpxml"/>
             <arg value="madtest.common.netty.study.chapter10.httpxml.Order"/>

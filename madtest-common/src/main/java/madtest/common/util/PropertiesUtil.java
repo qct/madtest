@@ -17,14 +17,6 @@ public class PropertiesUtil {
         init();
     }
 
-    private void init() {
-        appendProperties("config.properties");
-    }
-
-    private static class PropertiesUtilHolder {
-        private static final PropertiesUtil INSTANCE = new PropertiesUtil();
-    }
-
     public static PropertiesUtil getInstance() {
         return PropertiesUtilHolder.INSTANCE;
     }
@@ -73,6 +65,14 @@ public class PropertiesUtil {
      */
     public static void setProperties(Properties properties) {
         PropertiesUtil.PROPERTIES = properties;
+    }
+
+    private void init() {
+        appendProperties("config.properties");
+    }
+
+    private static class PropertiesUtilHolder {
+        private static final PropertiesUtil INSTANCE = new PropertiesUtil();
     }
 
 }

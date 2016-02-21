@@ -5,12 +5,13 @@ package madtest.common.java8.interface_default;
  */
 @FunctionalInterface
 public interface Functional {
-    void method();
-    default void defaultMethod() {
+    static void staticMethod() {
 
     }
 
-    static void staticMethod() {
+    void method();
+
+    default void defaultMethod() {
 
     }
 }

@@ -1,7 +1,5 @@
 package madtest.web.controller.oauth2;
 
-import madtest.common.oauth2.Constants;
-import madtest.common.oauth2.service.OAuthService;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
@@ -23,6 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import madtest.common.oauth2.Constants;
+import madtest.common.oauth2.service.OAuthService;
 
 /**
  * Created by qct on 2015/7/29.

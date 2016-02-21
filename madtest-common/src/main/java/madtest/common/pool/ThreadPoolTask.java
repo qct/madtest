@@ -8,11 +8,9 @@ import java.util.concurrent.Callable;
  */
 public class ThreadPoolTask implements Callable<String>, Serializable {
     private static final long serialVersionUID = 0;
-
+    private static int consumeTaskSleepTime = 2000;
     // 保存任务所需要的数据
     private Object threadPoolTaskData;
-
-    private static int consumeTaskSleepTime = 2000;
 
     public ThreadPoolTask(Object tasks) {
         this.threadPoolTaskData = tasks;

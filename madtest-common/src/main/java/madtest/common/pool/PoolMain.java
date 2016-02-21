@@ -7,6 +7,7 @@ import org.apache.commons.pool2.impl.GenericObjectPool;
  */
 public class PoolMain {
     static GenericObjectPool<SimpleThread> pool = new GenericObjectPool<>(new MyPooledObjectFactory());
+
     static {
         pool.setMaxTotal(2);
     }

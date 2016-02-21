@@ -13,9 +13,11 @@ public class AbstractRemoteControl {
     public void turnOn() {
         tv.on();
     }
+
     public void turnOff() {
         tv.off();
     }
+
     public void setChannel(int channel) {
         tv.switchChannel(channel);
     }

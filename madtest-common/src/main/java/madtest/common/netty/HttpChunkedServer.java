@@ -22,6 +22,18 @@ public class HttpChunkedServer {
         this.port = port;
     }
 
+    public static void main(String[] args) {
+        int port;
+        if (args.length > 0) {
+            port = Integer.parseInt(args[0]);
+        } else {
+            port = 8080;
+        }
+
+        System.out.format("server start with port %d \n", port);
+        new HttpChunkedServer(port).run();
+    }
+
     public void run() {
         // Configure the server.
         ServerBootstrap bootstrap = new ServerBootstrap(
@@ -50,17 +62,5 @@ public class HttpChunkedServer {
 
         // Bind and start to accept incoming connections.
         bootstrap.bind(new InetSocketAddress(port));
-    }
-
-    public static void main(String[] args) {
-        int port;
-        if (args.length > 0) {
-            port = Integer.parseInt(args[0]);
-        } else {
-            port = 8080;
-        }
-
-        System.out.format("server start with port %d \n", port);
-        new HttpChunkedServer(port).run();
     }
 }

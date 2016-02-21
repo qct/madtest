@@ -46,13 +46,13 @@ public class ReadCompletionHandler implements CompletionHandler<Integer, ByteBuf
                 @Override
                 public void completed(Integer result, ByteBuffer buffer) {
                     //如果没有发送完,继续发送
-                    if(buffer.hasRemaining())
+                    if (buffer.hasRemaining())
                         channel.write(buffer, buffer, this);
                 }
 
                 @Override
                 public void failed(Throwable exc, ByteBuffer attachment) {
-                    try{
+                    try {
                         channel.close();
                     } catch (IOException e) {
                         e.printStackTrace();

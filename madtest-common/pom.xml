@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>madtest</artifactId>
@@ -207,7 +208,9 @@
                 <artifactId>jibx-maven-plugin</artifactId>
                 <version>${jibx.version}</version>
                 <configuration>
-                    <schemaBindingDirectory>src/main/java/madtest/common/nettry/study/chapter10/httpxml/jibx</schemaBindingDirectory>
+                    <schemaBindingDirectory>
+                        src/main/java/madtest/common/nettry/study/chapter10/httpxml/jibx
+                    </schemaBindingDirectory>
                     <includeSchemaBindings>
                         <includeSchemaBindings>*-binding.xml</includeSchemaBindings>
                     </includeSchemaBindings>
@@ -215,14 +218,17 @@
                         <excludeSchemaBinding>template-binding.xml</excludeSchemaBinding>
                     </excludeSchemaBindings>
                     <interfaceClassNames>
-                        <interfaceClassName>madtest.common.netty.study.chapter10.httpxml.Shipping</interfaceClassName>
+                        <interfaceClassName>madtest.common.netty.study.chapter10.httpxml.Shipping
+                        </interfaceClassName>
                     </interfaceClassNames>
                     <verbose>true</verbose>
                 </configuration>
                 <executions>
                     <execution>
                         <id>jibx-bind</id>
-                        <goals><goal>bind</goal></goals>
+                        <goals>
+                            <goal>bind</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>

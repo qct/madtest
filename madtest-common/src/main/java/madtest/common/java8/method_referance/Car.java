@@ -16,14 +16,6 @@ public class Car {
         System.out.println("Collided " + car.toString());
     }
 
-    public void follow(final Car another) {
-        System.out.println("Following the " + another.toString());
-    }
-
-    public void repair() {
-        System.out.println("Repaired " + this.toString());
-    }
-
     public static void main(String[] args) {
 
         //第一种方法引用是构造方法引用，语法是：Class::new ，对于泛型来说语法是：Class<T >::new，请注意构造方法没有参数:
@@ -39,6 +31,14 @@ public class Car {
         //第四种方法引用是引用特殊类的方法，语法是：instance::method，请注意只接受Car类型的一个参数。
         Car police = Car.create(Car::new);
         cars.forEach(police::follow);
+    }
+
+    public void follow(final Car another) {
+        System.out.println("Following the " + another.toString());
+    }
+
+    public void repair() {
+        System.out.println("Repaired " + this.toString());
     }
 
 }

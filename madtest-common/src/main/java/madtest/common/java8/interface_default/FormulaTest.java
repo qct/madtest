@@ -9,7 +9,7 @@ public class FormulaTest {
         Formula formula = new Formula() {
             @Override
             public double calculate(int a) {
-                return sqrt(a*100);
+                return sqrt(a * 100);
             }
         };
 

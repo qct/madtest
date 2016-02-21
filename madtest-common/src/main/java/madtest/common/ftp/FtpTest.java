@@ -12,8 +12,7 @@ import java.io.InputStream;
 import java.net.SocketException;
 
 /**
- * connect to FTP over TLS
- * Created by qct on 2015/6/16.
+ * connect to FTP over TLS Created by qct on 2015/6/16.
  */
 public class FtpTest {
 
@@ -38,7 +37,7 @@ public class FtpTest {
                 ftp.execPROT("P");
                 // Enter local passive mode
                 ftp.enterLocalPassiveMode();
-                ftp.setBufferSize(1024*1024);
+                ftp.setBufferSize(1024 * 1024);
                 ftp.setFileType(FTPClient.BINARY_FILE_TYPE);
                 ftp.setKeepAlive(true);
             }

@@ -15,6 +15,9 @@
  */
 package madtest.common.netty.study.chapter11;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
@@ -25,11 +28,14 @@ import io.netty.handler.codec.http.DefaultFullHttpResponse;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.HttpHeaderUtil;
-import io.netty.handler.codec.http.websocketx.*;
+import io.netty.handler.codec.http.websocketx.CloseWebSocketFrame;
+import io.netty.handler.codec.http.websocketx.PingWebSocketFrame;
+import io.netty.handler.codec.http.websocketx.PongWebSocketFrame;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import io.netty.handler.codec.http.websocketx.WebSocketFrame;
+import io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker;
+import io.netty.handler.codec.http.websocketx.WebSocketServerHandshakerFactory;
 import io.netty.util.CharsetUtil;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
@@ -44,6 +50,24 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
             .getLogger(WebSocketServerHandler.class.getName());
 
     private WebSocketServerHandshaker handshaker;
+
+    private static void sendHttpResponse(ChannelHandlerContext ctx,
+                                         FullHttpRequest req, FullHttpResponse res) {
+        // 返回应答给客户端
+        if (res.status().code() != 200) {
+            ByteBuf buf = Unpooled.copiedBuffer(res.status().toString(),
+                    CharsetUtil.UTF_8);
+            res.content().writeBytes(buf);
+            buf.release();
+            HttpHeaderUtil.setContentLength(res, res.content().readableBytes());
+        }
+
+        // 如果是非Keep-Alive，关闭连接
+        ChannelFuture f = ctx.channel().writeAndFlush(res);
+        if (!HttpHeaderUtil.isKeepAlive(req) || res.status().code() != 200) {
+            f.addListener(ChannelFutureListener.CLOSE);
+        }
+    }
 
     @Override
     public void messageReceived(ChannelHandlerContext ctx, Object msg)
@@ -116,24 +140,6 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
                 new TextWebSocketFrame(request
                         + " , 欢迎使用Netty WebSocket服务，现在时刻："
                         + new java.util.Date().toString()));
-    }
-
-    private static void sendHttpResponse(ChannelHandlerContext ctx,
-                                         FullHttpRequest req, FullHttpResponse res) {
-        // 返回应答给客户端
-        if (res.status().code() != 200) {
-            ByteBuf buf = Unpooled.copiedBuffer(res.status().toString(),
-                    CharsetUtil.UTF_8);
-            res.content().writeBytes(buf);
-            buf.release();
-            HttpHeaderUtil.setContentLength(res, res.content().readableBytes());
-        }
-
-        // 如果是非Keep-Alive，关闭连接
-        ChannelFuture f = ctx.channel().writeAndFlush(res);
-        if (!HttpHeaderUtil.isKeepAlive(req) || res.status().code() != 200) {
-            f.addListener(ChannelFutureListener.CLOSE);
-        }
     }
 
     @Override
