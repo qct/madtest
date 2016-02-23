@@ -9,10 +9,10 @@ import java.util.List;
  */
 public class MyTopic implements Subject {
 
+    private final Object MUTEX = new Object();
     private List<Observer> observers;
     private String message;
     private boolean changed = false;
-    private final Object MUTEX = new Object();
 
     public MyTopic() {
         this.observers = Lists.newArrayList();
@@ -20,8 +20,8 @@ public class MyTopic implements Subject {
 
     @Override
     public synchronized void register(Observer observer) {
-        if(observer == null) throw new NullPointerException("Null Observer");
-        if(!observers.contains(observer)) observers.add(observer);
+        if (observer == null) throw new NullPointerException("Null Observer");
+        if (!observers.contains(observer)) observers.add(observer);
     }
 
     @Override
@@ -34,11 +34,11 @@ public class MyTopic implements Subject {
         List<Observer> observerLocal = null;
         //synchronization is used to make sure any observer registered after message is received is not notified
         synchronized (MUTEX) {
-            if(!changed) return;
+            if (!changed) return;
             observerLocal = Lists.newArrayList(observers);
             this.changed = false;
         }
-        for(Observer observer : observerLocal) {
+        for (Observer observer : observerLocal) {
             observer.update();
         }
     }
@@ -50,7 +50,6 @@ public class MyTopic implements Subject {
 
     /**
      * method to post message to the topic
-     * @param msg
      */
     public void postMessage(String msg) {
         System.out.println("Message Posted to Topic:" + msg);

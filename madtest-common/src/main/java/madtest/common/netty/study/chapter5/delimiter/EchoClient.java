@@ -3,7 +3,10 @@ package madtest.common.netty.study.chapter5.delimiter;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.*;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -49,7 +52,7 @@ public class EchoClient {
 
             //等待客户端链路关闭
             f.channel().closeFuture().sync();
-        }finally {
+        } finally {
             //优雅退出,释放NIO线程组
             group.shutdownGracefully();
         }

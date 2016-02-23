@@ -5,12 +5,13 @@ package madtest.common.thread;
  */
 public class CountThread extends Thread {
     int total;
+
     @Override
-    public  void run() {
+    public void run() {
 //        int count = 0;
-        synchronized(this) {
-            for(int i=0;i<100;i++) {
-                System.out.println(Thread.currentThread().getName()+ ": " + i);
+        synchronized (this) {
+            for (int i = 0; i < 100; i++) {
+                System.out.println(Thread.currentThread().getName() + ": " + i);
                 total += i;
             }
             notify();

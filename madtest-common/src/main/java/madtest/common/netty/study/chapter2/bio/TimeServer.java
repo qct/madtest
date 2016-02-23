@@ -26,8 +26,8 @@ public class TimeServer {
                 socket = server.accept();
                 new Thread(new TimeServerHandler(socket)).start();
             }
-        }finally {
-            if(server != null) {
+        } finally {
+            if (server != null) {
                 System.out.println("The time server close");
                 server.close();
                 server = null;

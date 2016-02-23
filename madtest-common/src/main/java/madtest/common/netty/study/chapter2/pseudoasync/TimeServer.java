@@ -1,10 +1,10 @@
 package madtest.common.netty.study.chapter2.pseudoasync;
 
-import madtest.common.netty.study.chapter2.bio.TimeServerHandler;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import madtest.common.netty.study.chapter2.bio.TimeServerHandler;
 
 /**
  * Created by quchentao on 15/10/21.
@@ -29,8 +29,8 @@ public class TimeServer {
                 socket = server.accept();
                 singleExecutor.execute(new TimeServerHandler(socket));
             }
-        }finally {
-            if(server != null) {
+        } finally {
+            if (server != null) {
                 System.out.println("The time server close");
                 server.close();
                 server = null;

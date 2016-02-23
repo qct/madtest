@@ -17,8 +17,7 @@ public class Address {
     private String city;
 
     /**
-     * State abbreviation (required for the U.S. and Canada, optional
-     * otherwise).
+     * State abbreviation (required for the U.S. and Canada, optional otherwise).
      */
     private String state;
 

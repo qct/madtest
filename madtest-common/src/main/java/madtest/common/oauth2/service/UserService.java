@@ -1,8 +1,8 @@
 package madtest.common.oauth2.service;
 
-import madtest.common.oauth2.User;
-
 import java.util.List;
+
+import madtest.common.oauth2.User;
 
 /**
  * Created by qct on 2015/7/24.

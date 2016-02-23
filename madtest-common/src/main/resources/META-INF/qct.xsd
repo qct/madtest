@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsd:schema xmlns="https://github.com/qct"
-            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             xmlns:beans="http://www.springframework.org/schema/beans"
-            xmlns:tool="http://www.springframework.org/schema/tool"
+            xmlns="https://github.com/qct"
             targetNamespace="https://github.com/qct">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:import namespace="http://www.springframework.org/schema/beans"/>

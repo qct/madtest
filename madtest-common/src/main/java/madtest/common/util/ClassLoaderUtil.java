@@ -8,9 +8,7 @@ import java.io.InputStream;
 import java.net.URL;
 
 /**
- * 打为jar包后也能找到配置文件，并以流的方式读取。
- * <p>
- * InputStream is = ClassLoaderUtil.getResourceAsStream("/config.properties",XXX.class);
+ * 打为jar包后也能找到配置文件，并以流的方式读取。 <p> InputStream is = ClassLoaderUtil.getResourceAsStream("/config.properties",XXX.class);
  * if (null != is) { reader = new InputStreamReader(is, "UTF-8"); }
  *
  * @author quchentao

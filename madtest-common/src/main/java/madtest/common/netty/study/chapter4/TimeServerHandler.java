@@ -1,11 +1,11 @@
 package madtest.common.netty.study.chapter4;
 
+import java.util.Date;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
-
-import java.util.Date;
 
 /**
  * Created by quchentao on 15/10/26.

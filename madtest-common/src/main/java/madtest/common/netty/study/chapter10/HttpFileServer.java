@@ -29,7 +29,7 @@ public class HttpFileServer {
             }
         }
         String url = DEFAULT_URL;
-        if(args.length>1)
+        if (args.length > 1)
             url = args[1];
         new HttpFileServer().run(url, port);
     }

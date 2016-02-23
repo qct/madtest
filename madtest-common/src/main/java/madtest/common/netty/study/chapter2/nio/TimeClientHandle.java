@@ -26,7 +26,7 @@ public class TimeClientHandle implements Runnable {
      * @param port
      */
     public TimeClientHandle(String host, int port) {
-        this.host = host == null ? "127.0.0.1":host;
+        this.host = host == null ? "127.0.0.1" : host;
         this.port = port;
         try {
             selector = Selector.open();
@@ -42,12 +42,12 @@ public class TimeClientHandle implements Runnable {
     public void run() {
         try {
             doConnect();
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
         }
 
-        while(!stop) {
+        while (!stop) {
             try {
                 selector.select(1000);
                 Set<SelectionKey> selectedKeys = selector.selectedKeys();
@@ -58,10 +58,10 @@ public class TimeClientHandle implements Runnable {
                     it.remove();
                     try {
                         handleInput(key);
-                    }catch (Exception e) {
-                        if(key != null) {
+                    } catch (Exception e) {
+                        if (key != null) {
                             key.cancel();
-                            if(key.channel() != null) {
+                            if (key.channel() != null) {
                                 key.channel().close();
                             }
                         }
@@ -73,36 +73,36 @@ public class TimeClientHandle implements Runnable {
             }
         }
 
-        if(selector != null)
+        if (selector != null)
             try {
                 selector.close();
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
     }
 
     private void handleInput(SelectionKey key) throws IOException {
-        if(key.isValid()) {
+        if (key.isValid()) {
             SocketChannel sc = (SocketChannel) key.channel();
-            if(key.isConnectable()) {
-                if(sc.finishConnect()) {
+            if (key.isConnectable()) {
+                if (sc.finishConnect()) {
                     sc.register(selector, SelectionKey.OP_READ);
                     doWrite(sc);
-                }else
+                } else
                     System.exit(1);//连接失败,进程退出
             }
 
-            if(key.isReadable()) {
+            if (key.isReadable()) {
                 ByteBuffer readBuffer = ByteBuffer.allocate(1024);
                 int readBytes = sc.read(readBuffer);
-                if(readBytes > 0) {
+                if (readBytes > 0) {
                     readBuffer.flip();
                     byte[] bytes = new byte[readBuffer.remaining()];
                     readBuffer.get(bytes);
                     String body = new String(bytes, "UTF-8");
                     System.out.println("Now is: " + body);
                     this.stop = true;
-                }else if(readBytes < 0) {
+                } else if (readBytes < 0) {
                     //对端链路关闭
                     key.cancel();
                     sc.close();
@@ -115,10 +115,10 @@ public class TimeClientHandle implements Runnable {
     }
 
     private void doConnect() throws IOException {
-        if(socketChannel.connect(new InetSocketAddress(host, port))) {
+        if (socketChannel.connect(new InetSocketAddress(host, port))) {
             socketChannel.register(selector, SelectionKey.OP_READ);
             doWrite(socketChannel);
-        }else {
+        } else {
             socketChannel.register(selector, SelectionKey.OP_CONNECT);
         }
     }
@@ -133,7 +133,7 @@ public class TimeClientHandle implements Runnable {
         writeBuffer.put(req);
         writeBuffer.flip();
         sc.write(writeBuffer);
-        if(!writeBuffer.hasRemaining())
+        if (!writeBuffer.hasRemaining())
             System.out.println("Send order 2 server succeed.");
     }
 }

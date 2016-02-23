@@ -1,12 +1,24 @@
 package madtest.common.ftp;
 
 import org.apache.commons.net.PrintCommandListener;
-import org.apache.commons.net.ftp.*;
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPClientConfig;
+import org.apache.commons.net.ftp.FTPConnectionClosedException;
+import org.apache.commons.net.ftp.FTPFile;
+import org.apache.commons.net.ftp.FTPHTTPClient;
+import org.apache.commons.net.ftp.FTPReply;
+import org.apache.commons.net.ftp.FTPSClient;
 import org.apache.commons.net.io.CopyStreamEvent;
 import org.apache.commons.net.io.CopyStreamListener;
 import org.apache.commons.net.util.TrustManagerUtils;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 

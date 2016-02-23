@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>madtest</artifactId>
@@ -12,11 +13,19 @@
     <name>madtest-common</name>
     <url>http://maven.apache.org</url>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
         <!-- Netty-->
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.marshalling</groupId>
+            <artifactId>jboss-marshalling</artifactId>
         </dependency>
         <!-- MsgPack -->
         <dependency>
@@ -150,6 +159,12 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>edu.uci.ics</groupId>
+            <artifactId>crawler4j</artifactId>
+            <version>4.1</version>
+        </dependency>
+
         <!-- Log -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -163,11 +178,16 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
         </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
 
         <!-- Test -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -177,9 +197,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
+                    <compilerArgument>-parameters</compilerArgument>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
             <plugin>
@@ -187,7 +208,9 @@
                 <artifactId>jibx-maven-plugin</artifactId>
                 <version>${jibx.version}</version>
                 <configuration>
-                    <schemaBindingDirectory>src/main/java/madtest/common/nettry/study/chapter10/httpxml/jibx</schemaBindingDirectory>
+                    <schemaBindingDirectory>
+                        src/main/java/madtest/common/nettry/study/chapter10/httpxml/jibx
+                    </schemaBindingDirectory>
                     <includeSchemaBindings>
                         <includeSchemaBindings>*-binding.xml</includeSchemaBindings>
                     </includeSchemaBindings>
@@ -195,14 +218,17 @@
                         <excludeSchemaBinding>template-binding.xml</excludeSchemaBinding>
                     </excludeSchemaBindings>
                     <interfaceClassNames>
-                        <interfaceClassName>madtest.common.netty.study.chapter10.httpxml.Shipping</interfaceClassName>
+                        <interfaceClassName>madtest.common.netty.study.chapter10.httpxml.Shipping
+                        </interfaceClassName>
                     </interfaceClassNames>
                     <verbose>true</verbose>
                 </configuration>
                 <executions>
                     <execution>
                         <id>jibx-bind</id>
-                        <goals><goal>bind</goal></goals>
+                        <goals>
+                            <goal>bind</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>

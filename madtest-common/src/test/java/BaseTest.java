@@ -6,8 +6,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 /**
- * 测试基类
- * Created by qct on 2015/2/11.
+ * 测试基类 Created by qct on 2015/2/11.
  */
 @ContextConfiguration(locations = {"/application-context.xml"})
 public class BaseTest extends AbstractJUnit4SpringContextTests {

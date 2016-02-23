@@ -13,10 +13,11 @@ public class MyThreadPrinter implements Runnable {
         this.prev = prev;
         this.self = self;
     }
+
     @Override
     public void run() {
         int count = 10;
-        while(count > 0) {
+        while (count > 0) {
             synchronized (prev) {
                 synchronized (self) {
                     System.out.println(this.name);

@@ -1,7 +1,5 @@
 package madtest.common.sort;
 
-import java.util.Arrays;
-
 /**
  * Created by qct on 2015/3/15.
  */

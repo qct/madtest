@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
  */
 public class TestEncodeMd5 {
     static Logger logger = Logger.getLogger(TestEncodeMd5.class);
+
     public static void main(String[] args) throws EncoderException {
         String pwd = "123";
         logger.debug(org.springframework.util.DigestUtils.md5DigestAsHex(pwd.getBytes()));

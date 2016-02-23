@@ -33,6 +33,18 @@ import io.netty.handler.stream.ChunkedWriteHandler;
  * @date 2014年2月14日
  */
 public class WebSocketServer {
+    public static void main(String[] args) throws Exception {
+        int port = 8080;
+        if (args.length > 0) {
+            try {
+                port = Integer.parseInt(args[0]);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+        new WebSocketServer().run(port);
+    }
+
     public void run(int port) throws Exception {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -69,17 +81,5 @@ public class WebSocketServer {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-        int port = 8080;
-        if (args.length > 0) {
-            try {
-                port = Integer.parseInt(args[0]);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-        }
-        new WebSocketServer().run(port);
     }
 }

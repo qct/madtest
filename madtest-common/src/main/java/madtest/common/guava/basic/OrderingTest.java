@@ -4,8 +4,9 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
 
-import javax.annotation.Nullable;
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 /**
  * Created by qct on 2015/5/25.

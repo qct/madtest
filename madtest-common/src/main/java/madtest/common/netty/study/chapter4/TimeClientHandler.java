@@ -1,11 +1,12 @@
 package madtest.common.netty.study.chapter4;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Created by quchentao on 15/10/27.
@@ -23,7 +24,7 @@ public class TimeClientHandler extends ChannelHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         ByteBuf message = null;
-        for(int i=0; i<100;i++) {
+        for (int i = 0; i < 100; i++) {
             message = Unpooled.buffer(req.length);
             message.writeBytes(req);
             ctx.writeAndFlush(message);

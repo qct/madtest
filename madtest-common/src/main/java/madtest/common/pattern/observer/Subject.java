@@ -7,15 +7,11 @@ public interface Subject {
 
     /**
      * methods to register observers
-     *
-     * @param observer
      */
     void register(Observer observer);
 
     /**
      * methods to unregister observers
-     *
-     * @param observer
      */
     void unregister(Observer observer);
 
@@ -26,9 +22,6 @@ public interface Subject {
 
     /**
      * method to get updates from subject
-     *
-     * @param observer
-     * @return
      */
     Object getUpdate(Observer observer);
 }

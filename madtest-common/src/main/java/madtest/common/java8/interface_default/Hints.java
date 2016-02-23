@@ -10,6 +10,6 @@ public @interface Hints {
 }
 
 @Repeatable(Hints.class)
-@interface Hint{
+@interface Hint {
     String value();
 }

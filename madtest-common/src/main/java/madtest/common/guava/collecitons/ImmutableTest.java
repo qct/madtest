@@ -1,18 +1,20 @@
 package madtest.common.guava.collecitons;
 
-import com.google.common.collect.*;
-
-import java.util.Iterator;
+import com.google.common.collect.HashMultiset;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableSortedSet;
+import com.google.common.collect.UnmodifiableIterator;
 
 /**
  * Created by qct on 2015/6/4.
  */
 public class ImmutableTest {
     public static void main(String[] args) {
-        ImmutableSet<Integer> set = ImmutableSet.of(1,2);
-        ImmutableSortedSet<String> set2 = ImmutableSortedSet.of("b","a","d","c");
+        ImmutableSet<Integer> set = ImmutableSet.of(1, 2);
+        ImmutableSortedSet<String> set2 = ImmutableSortedSet.of("b", "a", "d", "c");
         UnmodifiableIterator<String> iter = set2.iterator();
-        while(iter.hasNext()) {
+        while (iter.hasNext()) {
             System.out.println(iter.next());
         }
 

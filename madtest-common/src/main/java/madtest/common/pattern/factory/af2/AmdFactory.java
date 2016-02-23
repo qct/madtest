@@ -7,6 +7,7 @@ public class AmdFactory implements AbstractFactory {
     public AmdFactory() {
         System.out.println("AmdFactory init---");
     }
+
     @Override
     public Cpu createCpu() {
         System.out.println("AmdFactory create CPU: ");

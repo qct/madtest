@@ -1,7 +1,6 @@
 package madtest.common.netty.study.chapter5.delimiter;
 
 import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 
@@ -10,13 +9,12 @@ import io.netty.channel.ChannelHandlerContext;
  */
 public class EchoClientHandler extends ChannelHandlerAdapter {
 
-    private int counter;
-
     static final String ECHO_REQ = "Hi, Quchentao. Welcome to Netty.$_";
+    private int counter;
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        for (int i=0;i<100;i++) {
+        for (int i = 0; i < 100; i++) {
             ctx.writeAndFlush(Unpooled.copiedBuffer(ECHO_REQ.getBytes()));
         }
     }

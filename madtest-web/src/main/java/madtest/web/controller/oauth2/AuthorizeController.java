@@ -1,9 +1,7 @@
 package madtest.web.controller.oauth2;
 
 import com.google.common.collect.Maps;
-import madtest.common.oauth2.Constants;
-import madtest.common.oauth2.service.ClientService;
-import madtest.common.oauth2.service.OAuthService;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.oltu.oauth2.as.issuer.MD5Generator;
 import org.apache.oltu.oauth2.as.issuer.OAuthIssuerImpl;
@@ -27,12 +25,17 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import madtest.common.oauth2.Constants;
+import madtest.common.oauth2.service.ClientService;
+import madtest.common.oauth2.service.OAuthService;
 
 /**
  * Created by qct on 2015/7/24.
@@ -155,9 +158,6 @@ public class AuthorizeController {
 
     /**
      * 验证ClientID 是否正确
-     *
-     * @param oAuthRequest
-     * @return
      */
     public boolean validateOAuth2AppKey(OAuthAuthzRequest oAuthRequest) {
         //客户端Appkey
@@ -170,9 +170,6 @@ public class AuthorizeController {
 
     /**
      * 用户登录
-     *
-     * @param request
-     * @return
      */
     private boolean validateOAuth2Pwd(HttpServletRequest request) {
         if ("get".equalsIgnoreCase(request.getMethod())) {
