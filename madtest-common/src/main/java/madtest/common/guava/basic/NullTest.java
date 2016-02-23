@@ -21,7 +21,7 @@ public class NullTest {
 //        testNullObject();
 //        sayHello(null);
 
-        testOptional();
+        testNullObject();
     }
 
     public static void testNull() {
