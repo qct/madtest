@@ -1,13 +1,13 @@
 package madtest.common.spark;
 
 
-import static spark.Spark.get;
+import spark.Spark;
 
 /**
  * Created by qct on 2015/5/17.
  */
 public class HelloWorld {
     public static void main(String[] args) {
-        get("/hello", (req, res) -> "Hello World");
+        Spark.get("/hello", (req, res) -> "Hello World");
     }
 }
