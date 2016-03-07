@@ -14,6 +14,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import madtest.common.util.ClassLoaderUtil;
+
 /**
  * Created by qct on 2015/6/11.
  */
