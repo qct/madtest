@@ -1,4 +1,4 @@
-package madtest.common.concurrenthashmap;
+package madtest.common.concurrent;
 
 import java.util.HashMap;
 import java.util.UUID;
