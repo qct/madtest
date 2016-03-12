@@ -29,7 +29,28 @@
         <jibx.version>1.2.6</jibx.version>
         <mysql.connector.version>5.1.37</mysql.connector.version>
         <druid.version>1.0.15</druid.version>
-        <spring.rabbit.version>	1.5.4.RELEASE</spring.rabbit.version>
+        <spring.rabbit.version>1.5.4.RELEASE</spring.rabbit.version>
+        <netty-all.version>5.0.0.Alpha2</netty-all.version>
+        <jboss-marshalling.version>2.0.0.Beta2</jboss-marshalling.version>
+        <mina-core.version>2.0.9</mina-core.version>
+        <commons-codec.version>1.10</commons-codec.version>
+        <jedis.version>2.7.2</jedis.version>
+        <fastjson.version>1.2.6</fastjson.version>
+        <zookeeper.version>3.4.6</zookeeper.version>
+        <commons-pool2.version>2.3</commons-pool2.version>
+        <spark-core.version>2.1</spark-core.version>
+        <jstl.version>1.2</jstl.version>
+        <guava.version>18.0</guava.version>
+        <mongodb-driver.version>3.0.2</mongodb-driver.version>
+        <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
+        <commons-net.version>3.4</commons-net.version>
+        <junit.version>4.11</junit.version>
+        <dom4j.version>2.0.0-RC1</dom4j.version>
+        <oauth2.version>1.0.0</oauth2.version>
+        <servlet-api.version>2.5</servlet-api.version>
+        <jackson.version>2.5.2</jackson.version>
+        <jsr305.version>3.0.0</jsr305.version>
+        <logback-classic.version>1.1.6</logback-classic.version>
     </properties>
 
     <dependencyManagement>
@@ -38,12 +59,12 @@
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-all</artifactId>
-                <version>5.0.0.Alpha2</version>
+                <version>${netty-all.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.marshalling</groupId>
                 <artifactId>jboss-marshalling</artifactId>
-                <version>2.0.0.Beta2</version>
+                <version>${jboss-marshalling.version}</version>
             </dependency>
             <!-- MsgPack -->
             <dependency>
@@ -55,13 +76,13 @@
             <dependency>
                 <groupId>org.apache.mina</groupId>
                 <artifactId>mina-core</artifactId>
-                <version>2.0.9</version>
+                <version>${mina-core.version}</version>
             </dependency>
             <!-- commons-codec -->
             <dependency>
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
-                <version>1.10</version>
+                <version>${commons-codec.version}</version>
             </dependency>
 
             <!-- Spring -->
@@ -95,14 +116,14 @@
             <dependency>
                 <groupId>org.apache.zookeeper</groupId>
                 <artifactId>zookeeper</artifactId>
-                <version>3.4.6</version>
+                <version>${zookeeper.version}</version>
             </dependency>
 
             <!-- commons pool2-->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-pool2</artifactId>
-                <version>2.3</version>
+                <version>${commons-pool2.version}</version>
             </dependency>
 
             <!-- Spark -->
@@ -115,115 +136,115 @@
                         <artifactId>slf4j-simple</artifactId>
                     </exclusion>
                 </exclusions>
-                <version>2.1</version>
+                <version>${spark-core.version}</version>
             </dependency>
 
             <!-- Guava -->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>18.0</version>
+                <version>${guava.version}</version>
             </dependency>
 
             <!-- MongoDB -->
             <dependency>
                 <groupId>org.mongodb</groupId>
                 <artifactId>mongodb-driver</artifactId>
-                <version>3.0.2</version>
+                <version>${mongodb-driver.version}</version>
             </dependency>
 
             <!-- Commons-net -->
             <dependency>
                 <groupId>commons-net</groupId>
                 <artifactId>commons-net</artifactId>
-                <version>3.3</version>
+                <version>${commons-net.version}</version>
             </dependency>
 
             <!-- commons-configuration-->
             <dependency>
                 <groupId>commons-configuration</groupId>
                 <artifactId>commons-configuration</artifactId>
-                <version>1.10</version>
+                <version>${commons-codec.version}</version>
             </dependency>
 
             <!-- Jedis -->
             <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
-                <version>2.7.2</version>
+                <version>${jedis.version}</version>
             </dependency>
 
             <!-- FastJson-->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
-                <version>1.2.6</version>
+                <version>${fastjson.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.google.code.findbugs</groupId>
                 <artifactId>jsr305</artifactId>
-                <version>3.0.0</version>
+                <version>${jsr305.version}</version>
             </dependency>
 
             <!-- Jackson -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
-                <version>2.5.2</version>
+                <version>${jackson.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-core</artifactId>
-                <version>2.5.2</version>
+                <version>${jackson.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-annotations</artifactId>
-                <version>2.5.2</version>
+                <version>${jackson.version}</version>
             </dependency>
 
             <!-- Servlet -->
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>servlet-api</artifactId>
-                <version>2.5</version>
+                <version>${servlet-api.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>javax.servlet.jsp</groupId>
                 <artifactId>jsp-api</artifactId>
-                <version>2.1</version>
+                <version>${spark-core.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>jstl</artifactId>
-                <version>1.2</version>
+                <version>${jstl.version}</version>
             </dependency>
 
             <!-- Dom4j -->
             <dependency>
                 <groupId>org.dom4j</groupId>
                 <artifactId>dom4j</artifactId>
-                <version>2.0.0-RC1</version>
+                <version>${dom4j.version}</version>
             </dependency>
 
             <!-- OAuth2-->
             <dependency>
                 <groupId>org.apache.oltu.oauth2</groupId>
                 <artifactId>org.apache.oltu.oauth2.authzserver</artifactId>
-                <version>1.0.0</version>
+                <version>${oauth2.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.oltu.oauth2</groupId>
                 <artifactId>org.apache.oltu.oauth2.resourceserver</artifactId>
-                <version>1.0.0</version>
+                <version>${oauth2.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.oltu.oauth2</groupId>
                 <artifactId>org.apache.oltu.oauth2.client</artifactId>
-                <version>1.0.0</version>
+                <version>${oauth2.version}</version>
             </dependency>
 
             <!-- JiBx -->
@@ -241,19 +262,16 @@
                 <groupId>org.jibx</groupId>
                 <artifactId>jibx-tools</artifactId>
                 <version>${jibx.version}</version>
-                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.jibx</groupId>
                 <artifactId>jibx-bind</artifactId>
                 <version>${jibx.version}</version>
-                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.jibx</groupId>
                 <artifactId>jibx-schema</artifactId>
                 <version>${jibx.version}</version>
-                <scope>compile</scope>
             </dependency>
 
             <!-- Druid -->
@@ -282,21 +300,16 @@
                 <version>${org.slf4j-version}</version>
             </dependency>
             <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>${org.slf4j-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.17</version>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback-classic.version}</version>
             </dependency>
 
             <!-- Test -->
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.11</version>
+                <version>${junit.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -307,7 +320,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.3</version>
+                    <version>${maven-compiler-plugin.version}</version>
                     <configuration>
                         <compilerArgument>-parameters</compilerArgument>
                         <source>${java.version}</source>

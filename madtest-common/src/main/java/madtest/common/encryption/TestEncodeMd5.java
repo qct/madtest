@@ -4,13 +4,14 @@ import org.apache.commons.codec.EncoderException;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.codec.digest.UnixCrypt;
 import org.apache.commons.codec.net.URLCodec;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by qct on 2015/1/23.
  */
 public class TestEncodeMd5 {
-    static Logger logger = Logger.getLogger(TestEncodeMd5.class);
+    static Logger logger = LoggerFactory.getLogger(TestEncodeMd5.class);
 
     public static void main(String[] args) throws EncoderException {
         String pwd = "123";

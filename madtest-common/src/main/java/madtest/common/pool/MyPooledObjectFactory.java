@@ -3,14 +3,15 @@ package madtest.common.pool;
 import org.apache.commons.pool2.BasePooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by qct on 2015/5/5.
  */
 public class MyPooledObjectFactory extends BasePooledObjectFactory<SimpleThread> {
 
-    Logger logger = Logger.getLogger(this.getClass());
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public SimpleThread create() throws Exception {
