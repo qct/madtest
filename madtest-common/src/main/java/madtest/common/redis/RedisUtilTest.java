@@ -5,7 +5,8 @@ package madtest.common.redis;
  */
 public class RedisUtilTest {
     public static void main(String[] args) {
-        String s = RedisUtil.getHSet("storage_file_md5_hash", "f39ee6f453314be30a210f3e328475af");
+        RedisUtil.set("storage_file_md5_hash", "f39ee6f453314be30a210f3e328475af");
+        String s = RedisUtil.get("storage_file_md5_hash");
         System.out.println(s);
     }
 }

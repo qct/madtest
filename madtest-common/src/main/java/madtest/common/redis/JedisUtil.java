@@ -3,6 +3,7 @@ package madtest.common.redis;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ import redis.clients.jedis.ShardedJedisPool;
 /**
  * 与spring结合版本 Created by qct on 2015/7/7.
  */
+@Component
 public class JedisUtil {
     private static Logger logger = LoggerFactory.getLogger(JedisUtil.class);
 

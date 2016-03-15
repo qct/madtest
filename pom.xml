@@ -51,6 +51,7 @@
         <jackson.version>2.5.2</jackson.version>
         <jsr305.version>3.0.0</jsr305.version>
         <logback-classic.version>1.1.6</logback-classic.version>
+        <shiro.version>1.2.4</shiro.version>
     </properties>
 
     <dependencyManagement>
@@ -286,6 +287,12 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.connector.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-core</artifactId>
+                <version>${shiro.version}</version>
             </dependency>
 
             <!-- Log -->

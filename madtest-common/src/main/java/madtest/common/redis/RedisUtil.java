@@ -22,7 +22,7 @@ public class RedisUtil {
      */
     private static void initialPool() {
         String host = REDIS_CONFIG.getString("redis.master.host", "localhost");
-        int port = REDIS_CONFIG.getInt("redis.master.host", 6379);
+        int port = REDIS_CONFIG.getInt("redis.master.port", 6379);
 
         try {
             JedisPoolConfig config = new JedisPoolConfig();

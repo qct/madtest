@@ -75,6 +75,10 @@
             <artifactId>org.apache.oltu.oauth2.client</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <finalName>madtest-web</finalName>
