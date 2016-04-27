@@ -17,7 +17,7 @@
         <!-- Common -->
         <dependency>
             <groupId>qct</groupId>
-            <artifactId>madtest-persist</artifactId>
+            <artifactId>madtest-common</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 
@@ -25,6 +25,10 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
             <version>${spring.version}</version>
         </dependency>
 
@@ -48,7 +52,7 @@
         <!-- Servlet -->
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
+            <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -75,9 +79,18 @@
             <artifactId>org.apache.oltu.oauth2.client</artifactId>
         </dependency>
 
+        <!-- shiro -->
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
         </dependency>
     </dependencies>
     <build>
@@ -90,6 +103,24 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.2.16.v20160414</version>
+                <configuration>
+                    <reload>manual</reload>
+                    <webAppConfig>
+                        <contextPath>/${project.build.finalName}</contextPath>
+                    </webAppConfig>
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>8080</port>
+                            <!--<maxIdleTime>60000</maxIdleTime>-->
+                        </connector>
+                    </connectors>
                 </configuration>
             </plugin>
         </plugins>

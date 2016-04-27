@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Created by qct on 2016/3/12.
  */
-@Configuration
+//@Configuration
 public class ProducerConfiguration {
     // 指定队列名称 routingkey的名称默认为Queue的名称，使用Exchange类型为DirectExchange
     protected final String helloWorldQueueName = "spring-queue-async";
