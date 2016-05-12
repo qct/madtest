@@ -25,13 +25,15 @@ public class BbbUtil {
     static String meetingID = null;
     static String moderatorFullName = null;
     static String attendeeFullName = null;
+    static String welcome = null;
 
     static {
         try {
             meetingName = URLEncoder.encode("屈陈涛的会议", "utf-8");
-            meetingID = URLEncoder.encode("会议ID123", "utf-8");
+            meetingID = URLEncoder.encode("会议IDxxx1113", "utf-8");
             moderatorFullName = URLEncoder.encode("主持人1", "utf-8");
             attendeeFullName = URLEncoder.encode("参会人1", "utf-8");
+            welcome = URLEncoder.encode("<br>欢迎进入 <b>%%CONFNAME%%</b>!<br><br>使用语音请点击左上角耳机图标。使用耳机可以避免噪音。<br>", "utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -46,15 +48,67 @@ public class BbbUtil {
         System.out.println("moderator join Url: " + moderatorUrl);
         System.out.println("attendee join Url: " + attendeeUrl);
 
-//        getCheckSum(meetingName, meetingID, moderatorPwd, attendeePwd, SECRET);
-//        String moderatorJoinUrl = "http://218.17.169" +
-//                ".173:9000/bigbluebutton/api/join?meetingID=test01&password=mp&fullName" +
-//                "=moderator&checksum=f21ecefbde1ff22fd0a81a0148d1c34074b31b7e";
-//        String attendeeJoinUrl= "http://218.17.169" +
-//                ".173:9000/bigbluebutton/api/join?meetingID=test01&password=ap&fullName" +
-//                "=attendee&checksum=1528db90a72cd03fe3990028067ed804313345f8";
-//        System.out.println("moderatorJoinUrl: " + moderatorJoinUrl);
-//        System.out.println("attendeeJoinUrl: " + attendeeJoinUrl);
+        System.out.println("getMeetingsUrl: " + getMeetingsUrl());
+        System.out.println("getMeetingInfoUrl: " + getMeetingInfoUrl(meetingID, pwdMap.get("moderatorPW")));
+        System.out.println("getEndUrl: " + getEndUrl(meetingID, pwdMap.get("moderatorPW")));
+
+//        endAllMeetings();
+    }
+
+    private static void endAllMeetings() {
+        Map<String, String> result = Maps.newHashMap();
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(getMeetingsUrl());
+
+            Element root = doc.getDocumentElement();
+            NodeList childNodes = root.getElementsByTagName("meeting");
+            for (int i = 0; i < childNodes.getLength(); i++) {
+                NodeList meetingInfo = childNodes.item(i).getChildNodes();
+                String meetingId = "";
+                String moderatorPW = "";
+                for(int j=0; j<meetingInfo.getLength(); j++) {
+                    if("meetingID".equals(meetingInfo.item(j).getNodeName())) {
+                        meetingId = meetingInfo.item(j).getTextContent();
+                    }
+                    if("moderatorPW".equals(meetingInfo.item(j).getNodeName())) {
+                        moderatorPW = meetingInfo.item(j).getTextContent();
+                    }
+                }
+//                System.out.println(meetingId + ":" + moderatorPW);
+//                result.put(meetingId, moderatorPW);
+                DocumentBuilderFactory.newInstance().newDocumentBuilder()
+                        .parse(getEndUrl(URLEncoder.encode(meetingId, "utf-8"), moderatorPW));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static String getEndUrl(String meetingId, String password) {
+        String url = API_ROOT + "end?meetingID=" + meetingId + "&password=" + password;
+        String paramForChecksum = getParamForChecksum(url);
+        String checksum = checksum(paramForChecksum);
+        url += "&checksum=" + checksum;
+        return url;
+    }
+
+    private static String getMeetingInfoUrl(String meetingId, String password) {
+        String url = API_ROOT + "getMeetingInfo?meetingID=" + meetingId + "&password=" + password;
+        String paramForChecksum = getParamForChecksum(url);
+        String checksum = checksum(paramForChecksum);
+        url += "&checksum=" + checksum;
+        return url;
+    }
+
+    public static String getJoinUrl(Map<String, String> param) {
+        String url = API_ROOT + "join?meetingID=" + param.get("meetingID") + "&password=" + param.get("password") + "&fullName=" +
+                param.get("fullName");
+        String paramForChecksum = getParamForChecksum(url);
+        String checksum = checksum(paramForChecksum);
+        url += "&checksum=" + checksum;
+        return url;
     }
 
     private static String getJoinUrl(String pwd, String moderatorFullName) {
@@ -68,7 +122,7 @@ public class BbbUtil {
     }
 
     private static Map<String, String> createMeeting() {
-        String url = API_ROOT + "create?name=" + meetingName + "&meetingID=" + meetingID;
+        String url = API_ROOT + "create?name=" + meetingName + "&meetingID=" + meetingID + "&welcome=" + welcome;
         String paramForChecksum = getParamForChecksum(url);
         String checksum = checksum(paramForChecksum);
         url += "&checksum=" + checksum;
@@ -134,5 +188,13 @@ public class BbbUtil {
             e.printStackTrace();
         }
         return checksum;
+    }
+
+    public static String getMeetingsUrl() {
+        String url = API_ROOT + "getMeetings?";
+        String paramForChecksum = getParamForChecksum(url);
+        String checksum = checksum(paramForChecksum);
+        url += "&checksum=" + checksum;
+        return url;
     }
 }
