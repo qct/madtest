@@ -2,9 +2,15 @@ package madtest.common.mq;
 
 import com.rabbitmq.client.AMQP;
 
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
@@ -24,12 +30,14 @@ public class ProducerConfiguration {
     // 指定队列名称 routingkey的名称默认为Queue的名称，使用Exchange类型为DirectExchange
     protected final String helloWorldQueueName = "spring-queue-async";
 
+    protected RabbitAdmin admin;
+
     // 创建链接
     @Bean
     public ConnectionFactory connectionFactory() {
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("192.168.199.20");
-        connectionFactory.setUsername("qct");
-        connectionFactory.setPassword("123");
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("10.67.1.90");
+        connectionFactory.setUsername("admin");
+        connectionFactory.setPassword("1");
         connectionFactory.setPort(AMQP.PROTOCOL.PORT);
         return connectionFactory;
     }
@@ -39,6 +47,7 @@ public class ProducerConfiguration {
     public RabbitTemplate rabbitTemplate() {
         RabbitTemplate template = new RabbitTemplate(connectionFactory());
         template.setRoutingKey(this.helloWorldQueueName);
+        template.setMessageConverter(new JsonMessageConverter());
         return template;
     }
 
@@ -58,6 +67,11 @@ public class ProducerConfiguration {
         @Autowired
         private volatile RabbitTemplate rabbitTemplate;
 
+        @Autowired
+        private ConnectionFactory connectionFactory;
+
+        private RabbitAdmin admin;
+
         //自增整数
         private final AtomicInteger counter = new AtomicInteger();
 
@@ -70,7 +84,14 @@ public class ProducerConfiguration {
          */
         @Scheduled(fixedRate = 3000)
         public void sendMessage() {
-            rabbitTemplate.convertAndSend("Hello World " + counter.incrementAndGet());
+            DirectExchange exchange = new DirectExchange("amqp.direct");
+            admin = new RabbitAdmin(connectionFactory);
+            admin.declareExchange(exchange);
+            Queue queue = new Queue("test-qct");
+            admin.declareQueue(queue);
+            admin.declareBinding(BindingBuilder.bind(queue).to(exchange).with("test-qct"));
+
+            rabbitTemplate.convertAndSend("amqp.direct", "test-qct", "Hello World " + counter.incrementAndGet());
         }
     }
 }

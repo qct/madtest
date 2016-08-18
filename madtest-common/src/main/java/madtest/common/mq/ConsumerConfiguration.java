@@ -22,9 +22,9 @@ public class ConsumerConfiguration {
     // 创建链接
     @Bean
     public ConnectionFactory connectionFactory() {
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("192.168.199.20");
-        connectionFactory.setUsername("qct");
-        connectionFactory.setPassword("123");
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("10.67.1.90");
+        connectionFactory.setUsername("admin");
+        connectionFactory.setPassword("1");
         connectionFactory.setPort(AMQP.PROTOCOL.PORT);
         return connectionFactory;
     }

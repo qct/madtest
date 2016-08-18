@@ -179,9 +179,15 @@
             <version>${crawler4j.version}</version>
         </dependency>
 
+        <!-- spring amqp-->
         <dependency>
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-lgpl</artifactId>
         </dependency>
 
         <!-- Log -->

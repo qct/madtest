@@ -53,6 +53,7 @@
         <jsr305.version>3.0.0</jsr305.version>
         <logback-classic.version>1.1.6</logback-classic.version>
         <shiro.version>1.2.4</shiro.version>
+        <jackson-mapper-lgpl.version>1.9.13</jackson-mapper-lgpl.version>
     </properties>
 
     <dependencyManagement>
@@ -332,6 +333,11 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback-classic.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-mapper-lgpl</artifactId>
+                <version>${jackson-mapper-lgpl.version}</version>
             </dependency>
 
             <!-- Test -->
