@@ -13,6 +13,7 @@
         <module>madtest-common</module>
         <module>madtest-persist</module>
         <module>websocket</module>
+        <module>servlet3</module>
     </modules>
 
     <name>madtest</name>
