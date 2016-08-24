@@ -7,9 +7,9 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>servlet3</artifactId>
+    <artifactId>madtest-servlet3</artifactId>
     <packaging>war</packaging>
-    <name>servlet3 Maven Webapp</name>
+    <name>madtest-servlet3</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
