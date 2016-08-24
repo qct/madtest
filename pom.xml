@@ -124,7 +124,7 @@
             <dependency>
                 <groupId>org.springframework.amqp</groupId>
                 <artifactId>spring-rabbit</artifactId>
-                <version>${spring.version}</version>
+                <version>${spring.rabbit.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
