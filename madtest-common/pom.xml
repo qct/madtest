@@ -185,9 +185,15 @@
             <artifactId>spring-rabbit</artifactId>
         </dependency>
 
+        <!-- jackson -->
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-lgpl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
         </dependency>
 
         <!-- Log -->
