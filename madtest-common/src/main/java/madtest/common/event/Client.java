@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by alex on 2016/9/30.
@@ -19,5 +20,19 @@ public class Client {
     @Test
     public void testEvent() {
         applicationContext.publishEvent(new AEvent("I'm A Event!"));
+    }
+
+    @Test
+    public void testConditionEvent() {
+        ConditionEvent conditionEvent = new ConditionEvent("condition event");
+        conditionEvent.setAwesome(true);
+        applicationContext.publishEvent(conditionEvent);
+    }
+
+    @Test
+    public void testTransactionEvent() {
+        TransactionEvent transactionEvent = new TransactionEvent("Transaction Event");
+        transactionEvent.setAwesome(true);
+        applicationContext.publishEvent(transactionEvent);
     }
 }
