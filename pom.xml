@@ -47,7 +47,7 @@
         <mongodb-driver.version>3.0.2</mongodb-driver.version>
         <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
         <commons-net.version>3.4</commons-net.version>
-        <junit.version>4.11</junit.version>
+        <junit.version>4.12</junit.version>
         <dom4j.version>2.0.0-RC1</dom4j.version>
         <oauth2.version>1.0.0</oauth2.version>
         <servlet-api.version>3.1.0</servlet-api.version>
