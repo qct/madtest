@@ -196,6 +196,13 @@
             <artifactId>aspectjweaver</artifactId>
         </dependency>
 
+        <!-- fabric8 kubernetes -->
+        <dependency>
+            <groupId>io.fabric8</groupId>
+            <artifactId>kubernetes-client</artifactId>
+            <version>1.4.14</version>
+        </dependency>
+
         <!-- Log -->
         <dependency>
             <groupId>org.slf4j</groupId>
