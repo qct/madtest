@@ -24,7 +24,7 @@ import io.fabric8.kubernetes.client.DefaultKubernetesClient;
 import io.fabric8.kubernetes.client.KubernetesClient;
 import io.fabric8.kubernetes.client.dsl.LogWatch;
 
-public class PodLogExample {
+public class PodLogExample{
 
   private static final Logger logger = LoggerFactory.getLogger(PodLogExample.class);
 
