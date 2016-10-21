@@ -10,7 +10,7 @@ public class SearchTest {
     public static void main(String[] args) {
         ServiceLoader<Search> s = ServiceLoader.load(Search.class);
         Iterator<Search> searches = s.iterator();
-        if (searches.hasNext()) {
+        while (searches.hasNext()) {
             Search curSearch = searches.next();
             curSearch.search("test");
         }
