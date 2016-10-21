@@ -1,17 +1,14 @@
 /**
  * Copyright (C) 2015 Red Hat, Inc.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
  */
 package madtest.common.kubernetes;
 
@@ -32,64 +29,64 @@ import io.fabric8.kubernetes.client.Watcher;
 
 public class WatchExample {
 
-  private static final Logger logger = LoggerFactory.getLogger(WatchExample.class);
+    private static final Logger logger = LoggerFactory.getLogger(WatchExample.class);
 
-  public static void main(String[] args) throws InterruptedException {
-    String master = "http://localhost:8080/";
-    if (args.length == 1) {
-      master = args[0];
-    }
-
-    final CountDownLatch closeLatch = new CountDownLatch(1);
-    Config config = new ConfigBuilder().withMasterUrl(master).withWatchReconnectLimit(2).build();
-    try (final KubernetesClient client = new DefaultKubernetesClient(config)) {
-      try (Watch watch = client.replicationControllers().inNamespace("default").withName("test").watch(new Watcher<ReplicationController>() {
-        @Override
-        public void eventReceived(Action action, ReplicationController resource) {
-          logger.info("{}: {}", action, resource.getMetadata().getResourceVersion());
+    public static void main(String[] args) throws InterruptedException {
+        String master = "http://localhost:8080/";
+        if (args.length == 1) {
+            master = args[0];
         }
 
-        @Override
-        public void onClose(KubernetesClientException e) {
-          if (e != null) {
+        final CountDownLatch closeLatch = new CountDownLatch(1);
+        Config config = new ConfigBuilder().withMasterUrl(master).withWatchReconnectLimit(2).build();
+        try (final KubernetesClient client = new DefaultKubernetesClient(config)) {
+            try (Watch watch = client.replicationControllers().inNamespace("default").withName("test").watch(new Watcher<ReplicationController>() {
+                @Override
+                public void eventReceived(Action action, ReplicationController resource) {
+                    logger.info("{}: {}", action, resource.getMetadata().getResourceVersion());
+                }
+
+                @Override
+                public void onClose(KubernetesClientException e) {
+                    if (e != null) {
+                        logger.error(e.getMessage(), e);
+                        closeLatch.countDown();
+                    }
+                }
+            })) {
+                closeLatch.await(10, TimeUnit.SECONDS);
+            } catch (KubernetesClientException | InterruptedException e) {
+                logger.error("Could not watch resources", e);
+            }
+            try (Watch watch = client.replicationControllers().inNamespace("default").watch(new Watcher<ReplicationController>() {
+                @Override
+                public void eventReceived(Action action, ReplicationController resource) {
+                    logger.info("{}: {}", action, resource.getMetadata().getResourceVersion());
+                }
+
+                @Override
+                public void onClose(KubernetesClientException e) {
+                    if (e != null) {
+                        logger.error(e.getMessage(), e);
+                        closeLatch.countDown();
+                    }
+                }
+            })) {
+                closeLatch.await(10, TimeUnit.SECONDS);
+            } catch (KubernetesClientException | InterruptedException e) {
+                logger.error("Could not watch resources", e);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
             logger.error(e.getMessage(), e);
-            closeLatch.countDown();
-          }
-        }
-      })) {
-        closeLatch.await(10, TimeUnit.SECONDS);
-      } catch (KubernetesClientException | InterruptedException e) {
-        logger.error("Could not watch resources", e);
-      }
-      try (Watch watch = client.replicationControllers().inNamespace("default").watch(new Watcher<ReplicationController>() {
-        @Override
-        public void eventReceived(Action action, ReplicationController resource) {
-          logger.info("{}: {}", action, resource.getMetadata().getResourceVersion());
-        }
 
-        @Override
-        public void onClose(KubernetesClientException e) {
-          if (e != null) {
-            logger.error(e.getMessage(), e);
-            closeLatch.countDown();
-          }
+            Throwable[] suppressed = e.getSuppressed();
+            if (suppressed != null) {
+                for (Throwable t : suppressed) {
+                    logger.error(t.getMessage(), t);
+                }
+            }
         }
-      })) {
-        closeLatch.await(10, TimeUnit.SECONDS);
-      } catch (KubernetesClientException | InterruptedException e) {
-        logger.error("Could not watch resources", e);
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-      logger.error(e.getMessage(), e);
-
-      Throwable[] suppressed = e.getSuppressed();
-      if (suppressed != null) {
-        for (Throwable t : suppressed) {
-          logger.error(t.getMessage(), t);
-        }
-      }
     }
-  }
 
 }
