@@ -1,6 +1,8 @@
 package madtest.common.pattern.proxy;
 
 /**
+ * https://my.oschina.net/huangyong/blog/161338
+ *
  * Created by alex on 2016/8/26.
  */
 public class Client {

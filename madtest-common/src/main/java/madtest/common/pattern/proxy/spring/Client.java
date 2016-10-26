@@ -8,6 +8,8 @@ import madtest.common.pattern.proxy.Greeting;
 import madtest.common.pattern.proxy.GreetingImpl;
 
 /**
+ * https://my.oschina.net/huangyong/blog/161338
+ *
  * Created by alex on 2016/9/5.
  */
 public class Client {
