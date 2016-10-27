@@ -3,6 +3,7 @@ package madtest.common.spring;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
@@ -22,5 +23,7 @@ public class ReadSpringSource {
         ApplicationContext applicationContext = new FileSystemXmlApplicationContext("classpath:spring-read-source.xml");
         System.out.println("Numbers: " + applicationContext.getBeanDefinitionCount());
         ((Person)applicationContext.getBean("person")).work();
+
+
     }
 }
