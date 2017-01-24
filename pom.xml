@@ -45,7 +45,7 @@
         <spark-core.version>2.1</spark-core.version>
         <jsp-api.version>2.2</jsp-api.version>
         <jstl.version>1.2</jstl.version>
-        <guava.version>18.0</guava.version>
+        <guava.version>20.0</guava.version>
         <mongodb-driver.version>3.0.2</mongodb-driver.version>
         <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
         <commons-net.version>3.4</commons-net.version>
@@ -59,6 +59,7 @@
         <shiro.version>1.2.4</shiro.version>
         <jackson-mapper-lgpl.version>1.9.13</jackson-mapper-lgpl.version>
         <aspectjweaver.version>1.8.9</aspectjweaver.version>
+        <quartz.version>2.2.3</quartz.version>
     </properties>
 
     <dependencyManagement>
@@ -340,6 +341,12 @@
                 <version>${aspectjweaver.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>${quartz.version}</version>
+            </dependency>
+
             <!-- Log -->
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -368,7 +375,6 @@
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
     <build>
