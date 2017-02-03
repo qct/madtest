@@ -245,6 +245,7 @@
             <artifactId>jackson-mapper-lgpl</artifactId>
         </dependency>
 
+        <!-- aspectJ-->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
