@@ -6,6 +6,7 @@ package madtest.common.pattern.proxy;
  * Created by alex on 2016/8/26.
  */
 public class Client {
+
     public static void main(String[] args) {
         //static
         Greeting greetingProxy = new GreetingProxy(new GreetingImpl());

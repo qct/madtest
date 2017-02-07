@@ -1,11 +1,10 @@
 package madtest.common.mq;
 
 import com.rabbitmq.client.AMQP;
-
+import java.util.concurrent.atomic.AtomicInteger;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
@@ -14,19 +13,15 @@ import org.springframework.amqp.support.converter.JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.TaskScheduler;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by qct on 2016/3/12.
  */
 //@Configuration
 public class ProducerConfiguration {
+
     // 指定队列名称 routingkey的名称默认为Queue的名称，使用Exchange类型为DirectExchange
     protected final String helloWorldQueueName = "spring-queue-async";
 
@@ -62,18 +57,15 @@ public class ProducerConfiguration {
         return new ScheduledAnnotationBeanPostProcessor();
     }
 
-    static class ScheduledProducer{
-
-        @Autowired
-        private volatile RabbitTemplate rabbitTemplate;
-
-        @Autowired
-        private ConnectionFactory connectionFactory;
-
-        private RabbitAdmin admin;
+    static class ScheduledProducer {
 
         //自增整数
         private final AtomicInteger counter = new AtomicInteger();
+        @Autowired
+        private volatile RabbitTemplate rabbitTemplate;
+        @Autowired
+        private ConnectionFactory connectionFactory;
+        private RabbitAdmin admin;
 
         /**
          * 每3秒发送一条消息
@@ -91,7 +83,8 @@ public class ProducerConfiguration {
             admin.declareQueue(queue);
             admin.declareBinding(BindingBuilder.bind(queue).to(exchange).with("test-qct"));
 
-            rabbitTemplate.convertAndSend("amqp.direct", "test-qct", "Hello World " + counter.incrementAndGet());
+            rabbitTemplate.convertAndSend("amqp.direct", "test-qct",
+                "Hello World " + counter.incrementAndGet());
         }
     }
 }

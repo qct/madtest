@@ -1,22 +1,17 @@
 /**
  * Copyright (C) 2015 Red Hat, Inc.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
  */
 package madtest.common.kubernetes;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 import io.fabric8.kubernetes.api.model.ReplicationController;
 import io.fabric8.kubernetes.client.Config;
@@ -26,6 +21,10 @@ import io.fabric8.kubernetes.client.KubernetesClient;
 import io.fabric8.kubernetes.client.KubernetesClientException;
 import io.fabric8.kubernetes.client.Watch;
 import io.fabric8.kubernetes.client.Watcher;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class WatchExample {
 
@@ -38,40 +37,43 @@ public class WatchExample {
         }
 
         final CountDownLatch closeLatch = new CountDownLatch(1);
-        Config config = new ConfigBuilder().withMasterUrl(master).withWatchReconnectLimit(2).build();
+        Config config = new ConfigBuilder().withMasterUrl(master).withWatchReconnectLimit(2)
+            .build();
         try (final KubernetesClient client = new DefaultKubernetesClient(config)) {
-            try (Watch watch = client.replicationControllers().inNamespace("default").withName("test").watch(new Watcher<ReplicationController>() {
-                @Override
-                public void eventReceived(Action action, ReplicationController resource) {
-                    logger.info("{}: {}", action, resource.getMetadata().getResourceVersion());
-                }
-
-                @Override
-                public void onClose(KubernetesClientException e) {
-                    if (e != null) {
-                        logger.error(e.getMessage(), e);
-                        closeLatch.countDown();
+            try (Watch watch = client.replicationControllers().inNamespace("default")
+                .withName("test").watch(new Watcher<ReplicationController>() {
+                    @Override
+                    public void eventReceived(Action action, ReplicationController resource) {
+                        logger.info("{}: {}", action, resource.getMetadata().getResourceVersion());
                     }
-                }
-            })) {
+
+                    @Override
+                    public void onClose(KubernetesClientException e) {
+                        if (e != null) {
+                            logger.error(e.getMessage(), e);
+                            closeLatch.countDown();
+                        }
+                    }
+                })) {
                 closeLatch.await(10, TimeUnit.SECONDS);
             } catch (KubernetesClientException | InterruptedException e) {
                 logger.error("Could not watch resources", e);
             }
-            try (Watch watch = client.replicationControllers().inNamespace("default").watch(new Watcher<ReplicationController>() {
-                @Override
-                public void eventReceived(Action action, ReplicationController resource) {
-                    logger.info("{}: {}", action, resource.getMetadata().getResourceVersion());
-                }
-
-                @Override
-                public void onClose(KubernetesClientException e) {
-                    if (e != null) {
-                        logger.error(e.getMessage(), e);
-                        closeLatch.countDown();
+            try (Watch watch = client.replicationControllers().inNamespace("default")
+                .watch(new Watcher<ReplicationController>() {
+                    @Override
+                    public void eventReceived(Action action, ReplicationController resource) {
+                        logger.info("{}: {}", action, resource.getMetadata().getResourceVersion());
                     }
-                }
-            })) {
+
+                    @Override
+                    public void onClose(KubernetesClientException e) {
+                        if (e != null) {
+                            logger.error(e.getMessage(), e);
+                            closeLatch.countDown();
+                        }
+                    }
+                })) {
                 closeLatch.await(10, TimeUnit.SECONDS);
             } catch (KubernetesClientException | InterruptedException e) {
                 logger.error("Could not watch resources", e);

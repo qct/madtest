@@ -4,6 +4,7 @@ package madtest.common.thread;
  * Created by qct on 2015/5/5.
  */
 public class PrinterTest {
+
     public static void main(String[] args) throws InterruptedException {
         Object a = new Object();
         Object b = new Object();

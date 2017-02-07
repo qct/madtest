@@ -1,20 +1,16 @@
 package madtest.common.mongodb;
 
 import com.google.common.collect.Lists;
-
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
-
 import madtest.common.util.ClassLoaderUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by qct on 2015/6/11.
@@ -39,7 +35,8 @@ public class MongoManager {
 
     public static void init() {
         Properties properties = new Properties();
-        InputStream inputStream = ClassLoaderUtil.getResourceAsStream("mongo.properties", MongoManager.class);
+        InputStream inputStream = ClassLoaderUtil
+            .getResourceAsStream("mongo.properties", MongoManager.class);
         try {
             properties.load(inputStream);
             hostAndPort = Lists.newArrayList();

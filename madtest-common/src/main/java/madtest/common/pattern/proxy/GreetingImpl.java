@@ -1,14 +1,14 @@
 package madtest.common.pattern.proxy;
 
-import org.springframework.stereotype.Component;
-
 import madtest.common.pattern.proxy.spring.aspectj.Tag;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by alex on 2016/8/26.
  */
 @Component
 public class GreetingImpl implements Greeting {
+
     @Tag
     @Override
     public void sayHello(String name) {

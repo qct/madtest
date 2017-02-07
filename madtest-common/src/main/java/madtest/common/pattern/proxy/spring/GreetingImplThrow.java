@@ -1,14 +1,14 @@
 package madtest.common.pattern.proxy.spring;
 
-import org.springframework.stereotype.Component;
-
 import madtest.common.pattern.proxy.Greeting;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by alex on 2016/9/5.
  */
 @Component
 public class GreetingImplThrow implements Greeting {
+
     @Override
     public void sayHello(String name) {
         System.out.println("Hello! " + name);

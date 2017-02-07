@@ -4,6 +4,7 @@ package madtest.common.bean;
  * Created by alex on 2016/8/12.
  */
 public class TargetClass {
+
     private String sex;
 
     public String getSex() {
@@ -17,7 +18,7 @@ public class TargetClass {
     @Override
     public String toString() {
         return "TargetClass{" +
-                "sex='" + sex + '\'' +
-                '}';
+            "sex='" + sex + '\'' +
+            '}';
     }
 }

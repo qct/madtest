@@ -17,6 +17,7 @@ import io.netty.handler.stream.ChunkedWriteHandler;
  * Created by quchentao on 15/11/4.
  */
 public class HttpFileServer {
+
     private static final String DEFAULT_URL = "/";
 
     public static void main(String[] args) throws Exception {
@@ -29,8 +30,9 @@ public class HttpFileServer {
             }
         }
         String url = DEFAULT_URL;
-        if (args.length > 1)
+        if (args.length > 1) {
             url = args[1];
+        }
         new HttpFileServer().run(url, port);
     }
 
@@ -40,20 +42,21 @@ public class HttpFileServer {
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
-                    .channel(NioServerSocketChannel.class)
-                    .childHandler(new ChannelInitializer<SocketChannel>() {
-                        @Override
-                        protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            socketChannel.pipeline()
-                                    .addLast("http-decoder", new HttpRequestDecoder())
-                                    .addLast("http-aggregator", new HttpObjectAggregator(65536))
-                                    .addLast("http-encoder", new HttpResponseEncoder())
-                                    .addLast("http-chunked", new ChunkedWriteHandler())
-                                    .addLast("fileServerHandler", new HttpFileServerHandler(url));
-                        }
-                    });
+                .channel(NioServerSocketChannel.class)
+                .childHandler(new ChannelInitializer<SocketChannel>() {
+                    @Override
+                    protected void initChannel(SocketChannel socketChannel) throws Exception {
+                        socketChannel.pipeline()
+                            .addLast("http-decoder", new HttpRequestDecoder())
+                            .addLast("http-aggregator", new HttpObjectAggregator(65536))
+                            .addLast("http-encoder", new HttpResponseEncoder())
+                            .addLast("http-chunked", new ChunkedWriteHandler())
+                            .addLast("fileServerHandler", new HttpFileServerHandler(url));
+                    }
+                });
             ChannelFuture future = b.bind("127.0.0.1", port).sync();
-            System.out.println("HTTP file server started, url: " + "http://127.0.0.1:" + port + url);
+            System.out
+                .println("HTTP file server started, url: " + "http://127.0.0.1:" + port + url);
 
             future.channel().closeFuture().sync();
         } finally {

@@ -1,11 +1,10 @@
 package madtest.common.util;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 打为jar包后也能找到配置文件，并以流的方式读取。 <p> InputStream is = ClassLoaderUtil.getResourceAsStream("/config.properties",XXX.class);
@@ -14,6 +13,7 @@ import java.net.URL;
  * @author quchentao
  */
 public class ClassLoaderUtil {
+
     private static final Logger logger = LoggerFactory.getLogger(ClassLoaderUtil.class);
 
     public static URL getResource(String resourceName, Class<?> callingClass) {
@@ -27,7 +27,8 @@ public class ClassLoaderUtil {
                 url = cl.getResource(resourceName);
             }
         }
-        if ((url == null) && (resourceName != null) && ((resourceName.length() == 0) || (resourceName.charAt(0) != '/'))) {
+        if ((url == null) && (resourceName != null) && ((resourceName.length() == 0) || (
+            resourceName.charAt(0) != '/'))) {
             return getResource('/' + resourceName, callingClass);
         }
         if (url != null) {

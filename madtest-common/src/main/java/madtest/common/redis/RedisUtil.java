@@ -1,19 +1,19 @@
 package madtest.common.redis;
 
 import com.alibaba.fastjson.JSON;
-
+import madtest.common.util.PropConfig;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import madtest.common.util.PropConfig;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.exceptions.JedisException;
 
 public class RedisUtil {
-    private static final PropertiesConfiguration REDIS_CONFIG = PropConfig.getConfig("redis.properties");
+
+    private static final PropertiesConfiguration REDIS_CONFIG = PropConfig
+        .getConfig("redis.properties");
     private static Logger log = LoggerFactory.getLogger(RedisUtil.class);
     private static JedisPool jedisPool = null;
 
@@ -29,7 +29,8 @@ public class RedisUtil {
 
             config.setMaxTotal(REDIS_CONFIG.getInt("redis.pool.max.total", config.getMaxTotal()));
             config.setMaxIdle(REDIS_CONFIG.getInt("redis.pool.max.idle", config.getMaxIdle()));
-            config.setMaxWaitMillis(REDIS_CONFIG.getLong("redis.pool.max.wait.millis", config.getMaxWaitMillis()));
+            config.setMaxWaitMillis(
+                REDIS_CONFIG.getLong("redis.pool.max.wait.millis", config.getMaxWaitMillis()));
             config.setTestOnBorrow(false);
             int timeout = REDIS_CONFIG.getInt("redis.pool.connection.timeout", 2000);
 
@@ -326,7 +327,7 @@ public class RedisUtil {
      * 获得HashSet对象
      *
      * @param domain 域名
-     * @param key    键值
+     * @param key 键值
      * @return Json String or String value
      */
     public static String getHSet(String domain, String key) {

@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationEvent;
  * Created by alex on 2016/9/30.
  */
 public class AEvent extends ApplicationEvent {
+
     /**
      * Create a new ApplicationEvent.
      *

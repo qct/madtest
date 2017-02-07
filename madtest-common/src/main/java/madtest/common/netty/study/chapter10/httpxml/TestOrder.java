@@ -15,15 +15,14 @@
  */
 package madtest.common.netty.study.chapter10.httpxml;
 
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.IBindingFactory;
 import org.jibx.runtime.IMarshallingContext;
 import org.jibx.runtime.IUnmarshallingContext;
 import org.jibx.runtime.JiBXException;
-
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
 
 /**
  * @author Lilinfeng

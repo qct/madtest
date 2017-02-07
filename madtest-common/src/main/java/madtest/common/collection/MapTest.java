@@ -10,6 +10,7 @@ import java.util.TreeMap;
  * Created by alex on 2016/10/24.
  */
 public class MapTest {
+
     public static void main(String[] args) {
         MapTest.noOrder();
         MapTest.hasOrder();
@@ -29,7 +30,7 @@ public class MapTest {
         while (it.hasNext()) {
             Map.Entry e = (Map.Entry) it.next();
             System.out.println("Key: " + e.getKey() + ";   Value: "
-                    + e.getValue());
+                + e.getValue());
         }
     }
 
@@ -48,7 +49,7 @@ public class MapTest {
         while (it.hasNext()) {
             Map.Entry e = (Map.Entry) it.next();
             System.out.println("Key: " + e.getKey() + ";   Value: "
-                    + e.getValue());
+                + e.getValue());
         }
     }
 
@@ -66,7 +67,7 @@ public class MapTest {
         while (it.hasNext()) {
             Map.Entry e = (Map.Entry) it.next();
             System.out.println("Key: " + e.getKey() + ";   Value: "
-                    + e.getValue());
+                + e.getValue());
         }
     }
 }

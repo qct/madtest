@@ -1,7 +1,6 @@
 package madtest.common.mq;
 
 import com.rabbitmq.client.AMQP;
-
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -16,6 +15,7 @@ import org.springframework.context.annotation.Bean;
  * Created by qct on 2016/3/12.
  */
 public class ConsumerConfiguration {
+
     // 指定队列名称 routingkey的名称默认为Queue的名称，使用Exchange类型为DirectExchange
     protected String springQueueDemo = "spring-queue-async";
 

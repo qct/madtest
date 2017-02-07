@@ -7,29 +7,38 @@ import java.util.Map;
  * Created by qct on 2016/3/7.
  */
 public class ReadWriteLockFull {
+
     private Map<Thread, Integer> readingThreads =
-            new HashMap<Thread, Integer>();
+        new HashMap<Thread, Integer>();
 
     private int writeAccesses = 0;
     private int writeRequests = 0;
     private Thread writingThread = null;
 
     public synchronized void lockRead()
-            throws InterruptedException {
+        throws InterruptedException {
         Thread callingThread = Thread.currentThread();
         while (!canGrantReadAccess(callingThread)) {
             wait();
         }
 
         readingThreads.put(callingThread,
-                (getReadAccessCount(callingThread) + 1));
+            (getReadAccessCount(callingThread) + 1));
     }
 
     private boolean canGrantReadAccess(Thread callingThread) {
-        if (isWriter(callingThread)) return true;
-        if (hasWriter()) return false;
-        if (isReader(callingThread)) return true;
-        if (hasWriteRequests()) return false;
+        if (isWriter(callingThread)) {
+            return true;
+        }
+        if (hasWriter()) {
+            return false;
+        }
+        if (isReader(callingThread)) {
+            return true;
+        }
+        if (hasWriteRequests()) {
+            return false;
+        }
         return true;
     }
 
@@ -38,8 +47,8 @@ public class ReadWriteLockFull {
         Thread callingThread = Thread.currentThread();
         if (!isReader(callingThread)) {
             throw new IllegalMonitorStateException(
-                    "Calling Thread does not" +
-                            " hold a read lock on this ReadWriteLock");
+                "Calling Thread does not" +
+                    " hold a read lock on this ReadWriteLock");
         }
         int accessCount = getReadAccessCount(callingThread);
         if (accessCount == 1) {
@@ -51,7 +60,7 @@ public class ReadWriteLockFull {
     }
 
     public synchronized void lockWrite()
-            throws InterruptedException {
+        throws InterruptedException {
         writeRequests++;
         Thread callingThread = Thread.currentThread();
         while (!canGrantWriteAccess(callingThread)) {
@@ -63,11 +72,11 @@ public class ReadWriteLockFull {
     }
 
     public synchronized void unlockWrite()
-            throws InterruptedException {
+        throws InterruptedException {
         if (!isWriter(Thread.currentThread())) {
             throw new IllegalMonitorStateException(
-                    "Calling Thread does not" +
-                            " hold the write lock on this ReadWriteLock");
+                "Calling Thread does not" +
+                    " hold the write lock on this ReadWriteLock");
         }
         writeAccesses--;
         if (writeAccesses == 0) {
@@ -77,17 +86,27 @@ public class ReadWriteLockFull {
     }
 
     private boolean canGrantWriteAccess(Thread callingThread) {
-        if (isOnlyReader(callingThread)) return true;
-        if (hasReaders()) return false;
-        if (writingThread == null) return true;
-        if (!isWriter(callingThread)) return false;
+        if (isOnlyReader(callingThread)) {
+            return true;
+        }
+        if (hasReaders()) {
+            return false;
+        }
+        if (writingThread == null) {
+            return true;
+        }
+        if (!isWriter(callingThread)) {
+            return false;
+        }
         return true;
     }
 
 
     private int getReadAccessCount(Thread callingThread) {
         Integer accessCount = readingThreads.get(callingThread);
-        if (accessCount == null) return 0;
+        if (accessCount == null) {
+            return 0;
+        }
         return accessCount.intValue();
     }
 
@@ -102,7 +121,7 @@ public class ReadWriteLockFull {
 
     private boolean isOnlyReader(Thread callingThread) {
         return readingThreads.size() == 1 &&
-                readingThreads.get(callingThread) != null;
+            readingThreads.get(callingThread) != null;
     }
 
     private boolean hasWriter() {

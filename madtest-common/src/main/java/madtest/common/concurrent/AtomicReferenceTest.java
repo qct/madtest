@@ -1,13 +1,13 @@
 package madtest.common.concurrent;
 
-import org.junit.Test;
-
 import java.util.concurrent.atomic.AtomicReference;
+import org.junit.Test;
 
 /**
  * Created by qct on 2016/3/9.
  */
 public class AtomicReferenceTest {
+
     AtomicReference<Long> objectAtomicReference = new AtomicReference<>(0L);
 
     @Test
@@ -19,7 +19,7 @@ public class AtomicReferenceTest {
             //dead loop
 //            long time = System.currentTimeMillis();
 //            long expect = objectAtomicReference.get();
-            while(!objectAtomicReference.compareAndSet(expect, time)) {
+            while (!objectAtomicReference.compareAndSet(expect, time)) {
                 expect = objectAtomicReference.get();
             }
             System.out.println(objectAtomicReference.get());

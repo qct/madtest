@@ -6,6 +6,7 @@ import java.util.Arrays;
  * Created by qct on 2015/6/18.
  */
 public class Lambdadada {
+
     public static void main(String[] args) {
         Arrays.asList("a", "b", "c", "d").forEach(e -> System.out.println(e));
         System.out.println("***************************************************");
@@ -26,7 +27,6 @@ public class Lambdadada {
         final String separator2 = ",";
         Arrays.asList("a", "b", "c", "d").forEach((String e) -> System.out.println(e + separator2));
         System.out.println("***************************************************");
-
 
         //Lambda表达式可能会有返回值，编译器会根据上下文推断返回值的类型。如果lambda的语句块只有一行，不需要return关键字。
         // 下面两个写法是等价的：

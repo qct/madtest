@@ -6,7 +6,9 @@ import org.apache.commons.pool2.impl.GenericObjectPool;
  * Created by qct on 2015/5/5.
  */
 public class PoolMain {
-    static GenericObjectPool<SimpleThread> pool = new GenericObjectPool<>(new MyPooledObjectFactory());
+
+    static GenericObjectPool<SimpleThread> pool = new GenericObjectPool<>(
+        new MyPooledObjectFactory());
 
     static {
         pool.setMaxTotal(2);

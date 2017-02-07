@@ -1,9 +1,8 @@
 package madtest.common.pattern.proxy.spring;
 
+import java.lang.reflect.Method;
 import org.springframework.aop.ThrowsAdvice;
 import org.springframework.stereotype.Component;
-
-import java.lang.reflect.Method;
 
 /**
  * Created by alex on 2016/9/5.

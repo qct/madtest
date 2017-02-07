@@ -1,8 +1,5 @@
 package madtest.common.encryption;
 
-import com.google.common.collect.Lists;
-
-
 import org.apache.commons.codec.EncoderException;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.codec.digest.UnixCrypt;
@@ -10,13 +7,11 @@ import org.apache.commons.codec.net.URLCodec;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Base64;
-import java.util.List;
-
 /**
  * Created by qct on 2015/1/23.
  */
 public class TestEncodeMd5 {
+
     static Logger logger = LoggerFactory.getLogger(TestEncodeMd5.class);
 
     public static void main(String[] args) throws EncoderException {
@@ -36,7 +31,6 @@ public class TestEncodeMd5 {
         new String(Base64.getDecoder().decode
                 ("bWVldGluZ0lEPWFjbS14YWg3dTRhYiZtZWV0aW5nTmFtZT3moYjlpJrlj5Hlj5HnmoTkvJrorq7lrqQteGFoN3U0YWImbWVldGluZ0tleT1iNHY3eXFpbCZ0eXBlPWF0dGVuZGVl"))
         );*/
-
 
 //        System.out.println(new Date((Long) 1466697600446l));
 

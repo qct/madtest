@@ -4,6 +4,7 @@ package madtest.common.thread;
  * Created by qct on 2015/5/5.
  */
 public class MyThreadPrinter implements Runnable {
+
     private String name;
     private Object prev;
     private Object self;

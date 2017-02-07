@@ -1,15 +1,14 @@
 package madtest.common.ftp;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.SocketException;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 import org.apache.commons.net.ftp.FTPSClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.SocketException;
 
 /**
  * connect to FTP over TLS Created by qct on 2015/6/16.
@@ -26,7 +25,8 @@ public class FtpTest {
             int reply = ftp.getReplyCode();
             if (!FTPReply.isPositiveCompletion(reply)) {
                 ftp.disconnect();
-                logger.debug("FtpUtils.createOrUpdateFile-----------------isPositiveCompletion----check---failed");
+                logger.debug(
+                    "FtpUtils.createOrUpdateFile-----------------isPositiveCompletion----check---failed");
             }
 
             // Login
@@ -45,7 +45,8 @@ public class FtpTest {
             logger.debug("working directory: " + ftp.printWorkingDirectory());
 
             InputStream is = new ByteArrayInputStream("hello123".getBytes());
-            boolean store = ftp.storeFile("/working/admin/mayamrpass/mrPass_TaskDesc_new_qct.xml", is);
+            boolean store = ftp
+                .storeFile("/working/admin/mayamrpass/mrPass_TaskDesc_new_qct.xml", is);
 
             is.close();
             logger.debug("store:" + store);

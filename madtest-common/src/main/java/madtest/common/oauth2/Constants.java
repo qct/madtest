@@ -4,6 +4,7 @@ package madtest.common.oauth2;
  * Created by qct on 2015/7/28.
  */
 public class Constants {
+
     public static final String INVALID_CLIENT_DESCRIPTION = "客户端验证失败，如错误的client_id/client_secret。";
     public static final String OAUTH_CLIENT_ID = "fbed1d1b4b1449daa4bc49397cbe2350";
     public static final String OAUTH_CLIENT_SECRET = "fbed1d1b4b1449daa4bc49397cbe2350";

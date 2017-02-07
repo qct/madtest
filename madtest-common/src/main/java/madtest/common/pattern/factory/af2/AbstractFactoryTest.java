@@ -4,6 +4,7 @@ package madtest.common.pattern.factory.af2;
  * Created by qct on 2015/6/4.
  */
 public class AbstractFactoryTest {
+
     public static void main(String[] args) {
         AbstractFactory amdFactory = new AmdFactory();
         AbstractFactory intelFactory = new IntelFactory();

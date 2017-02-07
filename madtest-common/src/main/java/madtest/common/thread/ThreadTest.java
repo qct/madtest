@@ -4,6 +4,7 @@ package madtest.common.thread;
  * Created by qct on 2015/3/15.
  */
 public class ThreadTest {
+
     public static void main(String[] args) {
         CountThread b = new CountThread();
         b.start();

@@ -1,7 +1,6 @@
 package madtest.common.pattern.observer;
 
 import com.google.common.collect.Lists;
-
 import java.util.List;
 
 /**
@@ -20,8 +19,12 @@ public class MyTopic implements Subject {
 
     @Override
     public synchronized void register(Observer observer) {
-        if (observer == null) throw new NullPointerException("Null Observer");
-        if (!observers.contains(observer)) observers.add(observer);
+        if (observer == null) {
+            throw new NullPointerException("Null Observer");
+        }
+        if (!observers.contains(observer)) {
+            observers.add(observer);
+        }
     }
 
     @Override
@@ -34,7 +37,9 @@ public class MyTopic implements Subject {
         List<Observer> observerLocal = null;
         //synchronization is used to make sure any observer registered after message is received is not notified
         synchronized (MUTEX) {
-            if (!changed) return;
+            if (!changed) {
+                return;
+            }
             observerLocal = Lists.newArrayList(observers);
             this.changed = false;
         }

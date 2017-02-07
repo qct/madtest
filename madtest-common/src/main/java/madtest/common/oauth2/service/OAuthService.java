@@ -4,6 +4,7 @@ package madtest.common.oauth2.service;
  * Created by qct on 2015/7/24.
  */
 public interface OAuthService {
+
     void addAuthCode(String authCode, String username);// 添加 auth code
 
     void addAccessToken(String accessToken, String username); // 添加 access token

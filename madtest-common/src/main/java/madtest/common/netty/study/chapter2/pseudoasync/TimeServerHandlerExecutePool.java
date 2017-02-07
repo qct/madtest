@@ -9,11 +9,13 @@ import java.util.concurrent.TimeUnit;
  * Created by quchentao on 15/10/25.
  */
 public class TimeServerHandlerExecutePool {
+
     private ExecutorService executor;
 
     public TimeServerHandlerExecutePool(int maxPoolSize, int queueSize) {
-        executor = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(), maxPoolSize, 120l, TimeUnit.SECONDS,
-                new ArrayBlockingQueue<Runnable>(queueSize));
+        executor = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(), maxPoolSize,
+            120l, TimeUnit.SECONDS,
+            new ArrayBlockingQueue<Runnable>(queueSize));
     }
 
     /**

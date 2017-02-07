@@ -4,6 +4,7 @@ package madtest.common.pattern.observer;
  * Created by qct on 2015/6/8.
  */
 public class ObserverTest {
+
     public static void main(String[] args) {
         //create subject
         MyTopic topic = new MyTopic();

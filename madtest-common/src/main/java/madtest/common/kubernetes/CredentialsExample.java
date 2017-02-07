@@ -1,24 +1,24 @@
 /**
  * Copyright (C) 2015 Red Hat, Inc.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
  */
 package madtest.common.kubernetes;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import io.fabric8.kubernetes.client.AutoAdaptableKubernetesClient;
 import io.fabric8.kubernetes.client.Config;
 import io.fabric8.kubernetes.client.ConfigBuilder;
 import io.fabric8.kubernetes.client.KubernetesClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CredentialsExample {
 
@@ -31,11 +31,11 @@ public class CredentialsExample {
         }
 
         Config config = new ConfigBuilder().withMasterUrl(master)
-                .withTrustCerts(true)
-                .withUsername("admin")
-                .withPassword("admin")
-                .withNamespace("default")
-                .build();
+            .withTrustCerts(true)
+            .withUsername("admin")
+            .withPassword("admin")
+            .withNamespace("default")
+            .build();
         try (final KubernetesClient client = new AutoAdaptableKubernetesClient(config)) {
 
             log("Received pods", client.pods().list());
@@ -43,7 +43,6 @@ public class CredentialsExample {
         } catch (Exception e) {
             e.printStackTrace();
             logger.error(e.getMessage(), e);
-
 
             Throwable[] suppressed = e.getSuppressed();
             if (suppressed != null) {

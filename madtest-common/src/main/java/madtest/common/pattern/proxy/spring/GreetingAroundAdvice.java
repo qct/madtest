@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class GreetingAroundAdvice implements MethodInterceptor {
+
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         before();

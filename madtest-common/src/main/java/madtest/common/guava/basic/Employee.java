@@ -4,6 +4,7 @@ package madtest.common.guava.basic;
  * Created by qct on 2015/5/25.
  */
 public class Employee {
+
     private Long id;
     private String name;
     private Integer age;

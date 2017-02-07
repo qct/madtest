@@ -1,15 +1,15 @@
 package madtest.common.mina;
 
+import java.util.Date;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
-
-import java.util.Date;
 
 /**
  * Created by qct on 2015/3/18.
  */
 public class TimeServerHandler extends IoHandlerAdapter {
+
     @Override
     public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
         cause.printStackTrace();

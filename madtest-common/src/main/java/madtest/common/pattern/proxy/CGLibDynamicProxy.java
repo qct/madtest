@@ -1,15 +1,15 @@
 package madtest.common.pattern.proxy;
 
+import java.lang.reflect.Method;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
-
-import java.lang.reflect.Method;
 
 /**
  * Created by alex on 2016/8/26.
  */
 public class CGLibDynamicProxy implements MethodInterceptor {
+
     private static CGLibDynamicProxy instance = new CGLibDynamicProxy();
 
     private CGLibDynamicProxy() {
@@ -25,7 +25,8 @@ public class CGLibDynamicProxy implements MethodInterceptor {
     }
 
     @Override
-    public Object intercept(Object target, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
+    public Object intercept(Object target, Method method, Object[] args, MethodProxy methodProxy)
+        throws Throwable {
         before();
         Object result = methodProxy.invokeSuper(target, args);
         after();

@@ -18,6 +18,7 @@ import io.netty.handler.logging.LoggingHandler;
  * Created by quchentao on 15/10/27.
  */
 public class EchoServer {
+
     public static void main(String[] args) throws InterruptedException {
         int port = 8080;
         if (args != null && args.length > 0) {
@@ -37,18 +38,18 @@ public class EchoServer {
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
-                    .channel(NioServerSocketChannel.class)
-                    .option(ChannelOption.SO_BACKLOG, 100)
-                    .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new ChannelInitializer<SocketChannel>() {
-                        @Override
-                        protected void initChannel(SocketChannel channel) throws Exception {
-                            channel.pipeline()
-                                    .addLast(new FixedLengthFrameDecoder(20))
-                                    .addLast(new StringDecoder())
-                                    .addLast(new EchoServerHandler());
-                        }
-                    });
+                .channel(NioServerSocketChannel.class)
+                .option(ChannelOption.SO_BACKLOG, 100)
+                .handler(new LoggingHandler(LogLevel.INFO))
+                .childHandler(new ChannelInitializer<SocketChannel>() {
+                    @Override
+                    protected void initChannel(SocketChannel channel) throws Exception {
+                        channel.pipeline()
+                            .addLast(new FixedLengthFrameDecoder(20))
+                            .addLast(new StringDecoder())
+                            .addLast(new EchoServerHandler());
+                    }
+                });
             //绑定端口, 同步等待成功
             ChannelFuture f = b.bind(port).sync();
 

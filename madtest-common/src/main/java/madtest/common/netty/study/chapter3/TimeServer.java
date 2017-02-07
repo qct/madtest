@@ -14,6 +14,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * Created by quchentao on 15/10/26.
  */
 public class TimeServer {
+
     public static void main(String[] args) throws Exception {
         int port = 8080;
         if (args != null && args.length > 0) {
@@ -33,9 +34,9 @@ public class TimeServer {
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
-                    .channel(NioServerSocketChannel.class)
-                    .option(ChannelOption.SO_BACKLOG, 1024)
-                    .childHandler(new ChildChannelHandler());
+                .channel(NioServerSocketChannel.class)
+                .option(ChannelOption.SO_BACKLOG, 1024)
+                .childHandler(new ChildChannelHandler());
             //绑定端口, 同步等待成功
             ChannelFuture f = b.bind(port).sync();
 

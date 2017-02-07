@@ -1,13 +1,13 @@
 package madtest.common.oauth2.service;
 
 import java.util.List;
-
 import madtest.common.oauth2.User;
 
 /**
  * Created by qct on 2015/7/24.
  */
 public interface UserService {
+
     User createUser(User user);// 创建用户
 
     User updateUser(User user);// 更新用户

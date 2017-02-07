@@ -12,7 +12,9 @@ import java.util.concurrent.CountDownLatch;
 /**
  * Created by quchentao on 15/10/26.
  */
-public class AsynctimeClientHandler implements Runnable, CompletionHandler<Void, AsynctimeClientHandler> {
+public class AsynctimeClientHandler implements Runnable,
+    CompletionHandler<Void, AsynctimeClientHandler> {
+
     private AsynchronousSocketChannel client;
     private String host;
     private int port;
@@ -57,31 +59,32 @@ public class AsynctimeClientHandler implements Runnable, CompletionHandler<Void,
                     client.write(buffer, buffer, this);
                 } else {
                     ByteBuffer readBuffer = ByteBuffer.allocate(1024);
-                    client.read(readBuffer, readBuffer, new CompletionHandler<Integer, ByteBuffer>() {
-                        @Override
-                        public void completed(Integer result, ByteBuffer attachment) {
-                            attachment.flip();
-                            byte[] bytes = new byte[attachment.remaining()];
-                            attachment.get(bytes);
-                            String body;
-                            try {
-                                body = new String(bytes, "UTF-8");
-                                System.out.println("Now is: " + body);
-                                latch.countDown();
-                            } catch (UnsupportedEncodingException e) {
-                                e.printStackTrace();
+                    client
+                        .read(readBuffer, readBuffer, new CompletionHandler<Integer, ByteBuffer>() {
+                            @Override
+                            public void completed(Integer result, ByteBuffer attachment) {
+                                attachment.flip();
+                                byte[] bytes = new byte[attachment.remaining()];
+                                attachment.get(bytes);
+                                String body;
+                                try {
+                                    body = new String(bytes, "UTF-8");
+                                    System.out.println("Now is: " + body);
+                                    latch.countDown();
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
+                                }
                             }
-                        }
 
-                        @Override
-                        public void failed(Throwable exc, ByteBuffer attachment) {
-                            try {
-                                client.close();
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                            @Override
+                            public void failed(Throwable exc, ByteBuffer attachment) {
+                                try {
+                                    client.close();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                             }
-                        }
-                    });
+                        });
                 }
             }
 

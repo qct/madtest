@@ -1,13 +1,13 @@
 package madtest.common.oauth2.service;
 
 import java.util.List;
-
 import madtest.common.oauth2.Client;
 
 /**
  * Created by qct on 2015/7/24.
  */
 public interface ClientService {
+
     Client createClient(Client client);// 创建客户端
 
     Client updateClient(Client client);// 更新客户端

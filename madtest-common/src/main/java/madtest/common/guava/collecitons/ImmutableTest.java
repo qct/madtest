@@ -10,6 +10,7 @@ import com.google.common.collect.UnmodifiableIterator;
  * Created by qct on 2015/6/4.
  */
 public class ImmutableTest {
+
     public static void main(String[] args) {
         ImmutableSet<Integer> set = ImmutableSet.of(1, 2);
         ImmutableSortedSet<String> set2 = ImmutableSortedSet.of("b", "a", "d", "c");
@@ -18,10 +19,8 @@ public class ImmutableTest {
             System.out.println(iter.next());
         }
 
-
         ImmutableSet<String> foobar = ImmutableSet.of("foo", "bar", "baz");
         ImmutableList<String> defensiveCopy = ImmutableList.copyOf(foobar);
-
 
         HashMultiset hashMultiset = HashMultiset.create();
         hashMultiset.add("b");

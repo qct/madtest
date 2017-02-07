@@ -60,6 +60,7 @@
         <jackson-mapper-lgpl.version>1.9.13</jackson-mapper-lgpl.version>
         <aspectjweaver.version>1.8.9</aspectjweaver.version>
         <quartz.version>2.2.3</quartz.version>
+        <httpclient.version>4.5.2</httpclient.version>
     </properties>
 
     <dependencyManagement>
@@ -187,6 +188,13 @@
                 <groupId>commons-net</groupId>
                 <artifactId>commons-net</artifactId>
                 <version>${commons-net.version}</version>
+            </dependency>
+
+            <!-- http client -->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
             </dependency>
 
             <!-- commons-configuration-->

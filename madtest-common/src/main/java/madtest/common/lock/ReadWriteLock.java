@@ -17,12 +17,13 @@ package madtest.common.lock;
  * <p>Created by qct on 2016/3/7.
  */
 public class ReadWriteLock {
+
     private int readers = 0;
     private int writers = 0;
     private int writeRequests = 0;
 
     public synchronized void lockRead()
-            throws InterruptedException {
+        throws InterruptedException {
         while (writers > 0 || writeRequests > 0) {
             wait();
         }
@@ -35,7 +36,7 @@ public class ReadWriteLock {
     }
 
     public synchronized void lockWrite()
-            throws InterruptedException {
+        throws InterruptedException {
         writeRequests++;
 
         while (readers > 0 || writers > 0) {
@@ -46,7 +47,7 @@ public class ReadWriteLock {
     }
 
     public synchronized void unlockWrite()
-            throws InterruptedException {
+        throws InterruptedException {
         writers--;
         notifyAll();
     }

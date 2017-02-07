@@ -3,13 +3,14 @@ package madtest.common.clone;
 /**
  * Created by alex on 2016/10/18.
  */
-public class Professor implements Cloneable{
+public class Professor implements Cloneable {
+
     String name;
     int age;
-    Professor(String name,int age)
-    {
-        this.name=name;
-        this.age=age;
+
+    Professor(String name, int age) {
+        this.name = name;
+        this.age = age;
     }
 
     public Object clone() {

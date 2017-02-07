@@ -100,14 +100,15 @@ public class MultiplexerTimeServer implements Runnable {
                     String body = new String(bytes, "UTF-8");
                     System.out.println("The time server receive order: " + body);
                     String currentTime = "QUERY TIME ORDER".equalsIgnoreCase(body) ?
-                            new Date(System.currentTimeMillis()).toString() : "BAD ORDER";
+                        new Date(System.currentTimeMillis()).toString() : "BAD ORDER";
                     doWrite(sc, currentTime);
                 } else if (readBytes < 0) {
                     //对端链路关闭
                     key.cancel();
                     sc.close();
-                } else
+                } else {
                     ;//读到0字节, 忽略
+                }
             }
         }
     }

@@ -5,6 +5,7 @@ package madtest.common.java8.interface_default;
  */
 @FunctionalInterface
 public interface Functional {
+
     static void staticMethod() {
 
     }

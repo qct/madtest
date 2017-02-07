@@ -1,10 +1,9 @@
 package madtest.common.pattern.proxy.spring.aspectj;
 
+import madtest.common.pattern.proxy.spring.Apology;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.DeclareParents;
 import org.springframework.stereotype.Component;
-
-import madtest.common.pattern.proxy.spring.Apology;
 
 /**
  * Created by alex on 2016/9/5.

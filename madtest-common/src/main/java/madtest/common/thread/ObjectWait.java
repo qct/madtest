@@ -4,6 +4,7 @@ package madtest.common.thread;
  * Created by alex on 2016/10/26.
  */
 public class ObjectWait {
+
     private volatile static boolean lock;
 
     public static void main(String[] args) throws InterruptedException {

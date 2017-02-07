@@ -1,17 +1,14 @@
 package madtest.common.redis;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import javax.annotation.Resource;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.ScanParams;
 import redis.clients.jedis.ScanResult;
@@ -23,6 +20,7 @@ import redis.clients.jedis.ShardedJedisPool;
  */
 @Component
 public class JedisUtil {
+
     private static Logger logger = LoggerFactory.getLogger(JedisUtil.class);
 
     @Resource
@@ -31,7 +29,7 @@ public class JedisUtil {
     /**
      * 设置一个key的过期时间（单位：秒）
      *
-     * @param key     key值
+     * @param key key值
      * @param seconds 多少秒后过期
      * @return 1：设置了过期时间 0：没有设置过期时间/不能设置过期时间
      */
@@ -46,7 +44,7 @@ public class JedisUtil {
             return shardedJedis.expire(key, seconds);
         } catch (Exception ex) {
             logger.error("EXPIRE error[key=" + key + " seconds=" + seconds
-                    + "]" + ex.getMessage(), ex);
+                + "]" + ex.getMessage(), ex);
             returnBrokenResource(shardedJedis);
         } finally {
             returnResource(shardedJedis);
@@ -57,7 +55,7 @@ public class JedisUtil {
     /**
      * 设置一个key在某个时间点过期
      *
-     * @param key           key值
+     * @param key key值
      * @param unixTimestamp unix时间戳，从1970-01-01 00:00:00开始到现在的秒数
      * @return 1：设置了过期时间 0：没有设置过期时间/不能设置过期时间
      */
@@ -72,7 +70,7 @@ public class JedisUtil {
             return shardedJedis.expireAt(key, unixTimestamp);
         } catch (Exception ex) {
             logger.error("EXPIRE error[key=" + key + " unixTimestamp="
-                    + unixTimestamp + "]" + ex.getMessage(), ex);
+                + unixTimestamp + "]" + ex.getMessage(), ex);
             returnBrokenResource(shardedJedis);
         } finally {
             returnResource(shardedJedis);
@@ -83,9 +81,9 @@ public class JedisUtil {
     /**
      * 截断一个List
      *
-     * @param key   列表key
+     * @param key 列表key
      * @param start 开始位置 从0开始
-     * @param end   结束位置
+     * @param end 结束位置
      * @return 状态码
      */
     public String trimList(String key, long start, long end) {
@@ -98,7 +96,7 @@ public class JedisUtil {
             return shardedJedis.ltrim(key, start, end);
         } catch (Exception ex) {
             logger.error("LTRIM 出错[key=" + key + " start=" + start + " end="
-                    + end + "]" + ex.getMessage(), ex);
+                + end + "]" + ex.getMessage(), ex);
             returnBrokenResource(shardedJedis);
         } finally {
             returnResource(shardedJedis);
@@ -129,7 +127,7 @@ public class JedisUtil {
     /**
      * 添加到Set中（同时设置过期时间）
      *
-     * @param key     key值
+     * @param key key值
      * @param seconds 过期时间 单位s
      */
     public boolean addSet(String key, int seconds, String... value) {
@@ -267,7 +265,7 @@ public class JedisUtil {
      * 截取List
      *
      * @param start 起始位置
-     * @param end   结束位置
+     * @param end 结束位置
      */
     public List<String> rangeList(String key, long start, long end) {
         if (key == null || key.equals("")) {
@@ -279,7 +277,7 @@ public class JedisUtil {
             return shardedJedis.lrange(key, start, end);
         } catch (Exception ex) {
             logger.error("rangeList 出错[key=" + key + " start=" + start
-                    + " end=" + end + "]" + ex.getMessage(), ex);
+                + " end=" + end + "]" + ex.getMessage(), ex);
             returnBrokenResource(shardedJedis);
         } finally {
             returnResource(shardedJedis);
@@ -310,7 +308,7 @@ public class JedisUtil {
     /**
      * 添加到List中（同时设置过期时间）
      *
-     * @param key     key值
+     * @param key key值
      * @param seconds 过期时间 单位s
      */
     public boolean addList(String key, int seconds, String... value) {
@@ -377,12 +375,13 @@ public class JedisUtil {
      * 设置HashSet对象
      *
      * @param domain 域名
-     * @param key    键值
-     * @param value  Json String or String value
+     * @param key 键值
+     * @param value Json String or String value
      */
     public boolean setHSet(String domain, String key, String value) {
-        if (value == null)
+        if (value == null) {
             return false;
+        }
         ShardedJedis shardedJedis = null;
         try {
             shardedJedis = shardedJedisPool.getResource();
@@ -401,7 +400,7 @@ public class JedisUtil {
      * 获得HashSet对象
      *
      * @param domain 域名
-     * @param key    键值
+     * @param key 键值
      * @return Json String or String value
      */
     public String getHSet(String domain, String key) {
@@ -422,7 +421,7 @@ public class JedisUtil {
      * 删除HashSet对象
      *
      * @param domain 域名
-     * @param key    键值
+     * @param key 键值
      * @return 删除的记录数
      */
     public long delHSet(String domain, String key) {
@@ -444,7 +443,7 @@ public class JedisUtil {
      * 删除HashSet对象
      *
      * @param domain 域名
-     * @param key    键值
+     * @param key 键值
      * @return 删除的记录数
      */
     public long delHSet(String domain, String... key) {
@@ -466,7 +465,7 @@ public class JedisUtil {
      * 判断key是否存在
      *
      * @param domain 域名
-     * @param key    键值
+     * @param key 键值
      */
     public boolean existsHSet(String domain, String key) {
         ShardedJedis shardedJedis = null;
@@ -500,7 +499,7 @@ public class JedisUtil {
             List<Map.Entry<String, String>> list = new ArrayList<Map.Entry<String, String>>();
             do {
                 scanResult = jedis.hscan(domain, String.valueOf(cursor),
-                        scanParams);
+                    scanParams);
                 list.addAll(scanResult.getResult());
                 cursor = Integer.parseInt(scanResult.getStringCursor());
             } while (cursor > 0);
@@ -592,7 +591,7 @@ public class JedisUtil {
      * 获得排序集合
      */
     public Set<String> getSoredSet(String key, long startScore, long endScore,
-                                   boolean orderByDesc) {
+        boolean orderByDesc) {
         ShardedJedis shardedJedis = null;
         try {
             shardedJedis = shardedJedisPool.getResource();
@@ -650,7 +649,7 @@ public class JedisUtil {
      * 获得排序集合
      */
     public Set<String> getSoredSetByRange(String key, int startRange,
-                                          int endRange, boolean orderByDesc) {
+        int endRange, boolean orderByDesc) {
         ShardedJedis shardedJedis = null;
         try {
             shardedJedis = shardedJedisPool.getResource();
@@ -720,7 +719,7 @@ public class JedisUtil {
         try {
             shardedJedis = shardedJedisPool.getResource();
             return shardedJedis.get(key) == null ? defaultValue : shardedJedis
-                    .get(key);
+                .get(key);
         } catch (Exception ex) {
             logger.error("get error.", ex);
             returnBrokenResource(shardedJedis);

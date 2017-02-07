@@ -1,6 +1,7 @@
 package madtest.common.pattern.factory.af;
 
 public class BusinessDriver extends Driver3 {
+
     public BenzCar createBenzCar(String car) throws Exception {
         return (BenzCar) Class.forName(car).newInstance();
     }

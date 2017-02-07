@@ -4,6 +4,7 @@ package madtest.common.thread;
  * Created by qct on 2015/3/15.
  */
 public class CountThread extends Thread {
+
     int total;
 
     @Override

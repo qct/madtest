@@ -1,5 +1,7 @@
 package madtest.common.netty;
 
+import java.net.InetSocketAddress;
+import java.util.concurrent.Executors;
 import org.jboss.netty.bootstrap.ServerBootstrap;
 import org.jboss.netty.channel.ChannelPipeline;
 import org.jboss.netty.channel.ChannelPipelineFactory;
@@ -9,13 +11,11 @@ import org.jboss.netty.handler.codec.http.HttpRequestDecoder;
 import org.jboss.netty.handler.codec.http.HttpResponseEncoder;
 import org.jboss.netty.handler.stream.ChunkedWriteHandler;
 
-import java.net.InetSocketAddress;
-import java.util.concurrent.Executors;
-
 /**
  * Created by qct on 2015/3/18.
  */
 public class HttpChunkedServer {
+
     private final int port;
 
     public HttpChunkedServer(int port) {
@@ -30,16 +30,16 @@ public class HttpChunkedServer {
             port = 8080;
         }
 
-        System.out.format("server start with port %d \n", port);
+        System.out.format("server start with port %d %n", port);
         new HttpChunkedServer(port).run();
     }
 
     public void run() {
         // Configure the server.
         ServerBootstrap bootstrap = new ServerBootstrap(
-                new NioServerSocketChannelFactory(
-                        Executors.newCachedThreadPool(),
-                        Executors.newCachedThreadPool()));
+            new NioServerSocketChannelFactory(
+                Executors.newCachedThreadPool(),
+                Executors.newCachedThreadPool()));
 
         // Set up the event pipeline factory.
         bootstrap.setPipelineFactory(new ChannelPipelineFactory() {

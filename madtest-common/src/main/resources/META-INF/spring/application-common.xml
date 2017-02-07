@@ -18,4 +18,6 @@
             </list>
         </property>
     </bean>
+
+    <bean class="madtest.common.spring.MyInitializer" init-method="init"/>
 </beans>

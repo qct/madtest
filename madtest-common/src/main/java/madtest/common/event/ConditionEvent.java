@@ -5,7 +5,8 @@ import org.springframework.context.ApplicationEvent;
 /**
  * Created by quchentao on 16/10/2.
  */
-public class ConditionEvent extends ApplicationEvent{
+public class ConditionEvent extends ApplicationEvent {
+
     private boolean awesome;
 
     public ConditionEvent(final String source) {

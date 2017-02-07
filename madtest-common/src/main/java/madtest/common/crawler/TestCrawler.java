@@ -1,19 +1,19 @@
 package madtest.common.crawler;
 
-import java.util.Set;
-import java.util.regex.Pattern;
-
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
+import java.util.Set;
+import java.util.regex.Pattern;
 
 /**
  * Created by quchentao on 16/1/2.
  */
 public class TestCrawler extends WebCrawler {
+
     private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg"
-            + "|png|mp3|mp3|zip|gz))$");
+        + "|png|mp3|mp3|zip|gz))$");
 
     /**
      * This method receives two parameters. The first parameter is the page in which we have
@@ -27,7 +27,7 @@ public class TestCrawler extends WebCrawler {
     public boolean shouldVisit(Page referringPage, WebURL url) {
         String href = url.getURL().toLowerCase();
         return !FILTERS.matcher(href).matches()
-                && href.startsWith("http://movie.douban.com/subject/");
+            && href.startsWith("http://movie.douban.com/subject/");
     }
 
     /**

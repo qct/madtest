@@ -1,7 +1,6 @@
 package madtest.common.spi;
 
 import java.util.List;
-
 import javax.print.Doc;
 
 /**

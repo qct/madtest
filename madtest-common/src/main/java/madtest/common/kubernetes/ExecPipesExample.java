@@ -1,20 +1,17 @@
 /**
  * Copyright (C) 2015 Red Hat, Inc.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
  */
 package madtest.common.kubernetes;
-
-import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import io.fabric8.kubernetes.client.Callback;
 import io.fabric8.kubernetes.client.Config;
@@ -24,6 +21,9 @@ import io.fabric8.kubernetes.client.KubernetesClient;
 import io.fabric8.kubernetes.client.KubernetesClientException;
 import io.fabric8.kubernetes.client.dsl.ExecWatch;
 import io.fabric8.kubernetes.client.utils.InputStreamPumper;
+import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ExecPipesExample {
 
@@ -42,12 +42,13 @@ public class ExecPipesExample {
         Config config = new ConfigBuilder().withMasterUrl(master).build();
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         try (
-                KubernetesClient client = new DefaultKubernetesClient(config);
-                ExecWatch watch = client.pods().withName(podName)
-                        .redirectingInput()
-                        .redirectingOutput()
-                        .exec();
-                InputStreamPumper pump = new InputStreamPumper(watch.getOutput(), new SystemOutCallback())) {
+            KubernetesClient client = new DefaultKubernetesClient(config);
+            ExecWatch watch = client.pods().withName(podName)
+                .redirectingInput()
+                .redirectingOutput()
+                .exec();
+            InputStreamPumper pump = new InputStreamPumper(watch.getOutput(),
+                new SystemOutCallback())) {
 
             executorService.submit(pump);
             watch.getInput().write("ls -al\n".getBytes());
@@ -60,6 +61,7 @@ public class ExecPipesExample {
     }
 
     private static class SystemOutCallback implements Callback<byte[]> {
+
         @Override
         public void call(byte[] data) {
             System.out.print(new String(data));

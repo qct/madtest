@@ -7,6 +7,7 @@ import java.util.concurrent.Callable;
  * Created by qct on 2015/5/6.
  */
 public class ThreadPoolTask implements Callable<String>, Serializable {
+
     private static final long serialVersionUID = 0;
     private static int consumeTaskSleepTime = 2000;
     // 保存任务所需要的数据

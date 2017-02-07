@@ -29,7 +29,7 @@ public class ReadCompletionHandler implements CompletionHandler<Integer, ByteBuf
             String req = new String(body, "UTF-8");
             System.out.println("The time server receive order: " + req);
             String currentTime = "QUERY TIME ORDER".equalsIgnoreCase(req) ?
-                    new Date(System.currentTimeMillis()).toString() : "BAD ORDER";
+                new Date(System.currentTimeMillis()).toString() : "BAD ORDER";
             doWrite(currentTime);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -46,8 +46,9 @@ public class ReadCompletionHandler implements CompletionHandler<Integer, ByteBuf
                 @Override
                 public void completed(Integer result, ByteBuffer buffer) {
                     //如果没有发送完,继续发送
-                    if (buffer.hasRemaining())
+                    if (buffer.hasRemaining()) {
                         channel.write(buffer, buffer, this);
+                    }
                 }
 
                 @Override

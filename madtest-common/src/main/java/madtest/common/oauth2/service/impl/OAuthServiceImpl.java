@@ -1,14 +1,14 @@
 package madtest.common.oauth2.service.impl;
 
-import org.springframework.stereotype.Service;
-
 import madtest.common.oauth2.service.OAuthService;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by qct on 2015/7/28.
  */
 @Service
 public class OAuthServiceImpl implements OAuthService {
+
     @Override
     public void addAuthCode(String authCode, String username) {
 

@@ -4,6 +4,7 @@ package madtest.common.netty.study.chapter10.httpxml;
  * Address information.
  */
 public class Address {
+
     /**
      * First line of street information (required).
      */
@@ -87,7 +88,7 @@ public class Address {
     @Override
     public String toString() {
         return "Address [street1=" + street1 + ", street2=" + street2
-                + ", city=" + city + ", state=" + state + ", postCode="
-                + postCode + ", country=" + country + "]";
+            + ", city=" + city + ", state=" + state + ", postCode="
+            + postCode + ", country=" + country + "]";
     }
 }

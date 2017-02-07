@@ -4,6 +4,7 @@ package madtest.common.sort;
  * Created by qct on 2015/3/15.
  */
 public class SortTest {
+
     public static void main(String[] args) {
 
         int[] array = new int[]{6, 54, 3, 8, 35, 23, 0};

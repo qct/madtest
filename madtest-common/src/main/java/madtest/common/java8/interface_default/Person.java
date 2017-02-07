@@ -8,4 +8,5 @@ package madtest.common.java8.interface_default;
 @Hint("hint1")
 @Hint("hint2")
 public class Person {
+
 }

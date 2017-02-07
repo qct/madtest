@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class GreetingAnnotationAspect {
+
     @Around("@annotation(madtest.common.pattern.proxy.spring.aspectj.Tag)")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
         before();

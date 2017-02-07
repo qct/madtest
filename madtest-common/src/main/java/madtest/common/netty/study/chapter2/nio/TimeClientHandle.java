@@ -73,12 +73,13 @@ public class TimeClientHandle implements Runnable {
             }
         }
 
-        if (selector != null)
+        if (selector != null) {
             try {
                 selector.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
     }
 
     private void handleInput(SelectionKey key) throws IOException {
@@ -88,8 +89,9 @@ public class TimeClientHandle implements Runnable {
                 if (sc.finishConnect()) {
                     sc.register(selector, SelectionKey.OP_READ);
                     doWrite(sc);
-                } else
+                } else {
                     System.exit(1);//连接失败,进程退出
+                }
             }
 
             if (key.isReadable()) {
@@ -106,8 +108,9 @@ public class TimeClientHandle implements Runnable {
                     //对端链路关闭
                     key.cancel();
                     sc.close();
-                } else
+                } else {
                     ;//读到0字节, 忽略
+                }
             }
 
         }
@@ -133,7 +136,8 @@ public class TimeClientHandle implements Runnable {
         writeBuffer.put(req);
         writeBuffer.flip();
         sc.write(writeBuffer);
-        if (!writeBuffer.hasRemaining())
+        if (!writeBuffer.hasRemaining()) {
             System.out.println("Send order 2 server succeed.");
+        }
     }
 }

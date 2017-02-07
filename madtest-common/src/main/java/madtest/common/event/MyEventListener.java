@@ -13,6 +13,7 @@ import org.springframework.transaction.event.TransactionalEventListener;
  */
 @Component
 public class MyEventListener {
+
     private static final Logger logger = LoggerFactory.getLogger(MyEventListener.class);
 
     @Async

@@ -9,6 +9,7 @@ import org.w3c.dom.Element;
  * Created by qct on 2015/7/9.
  */
 public class QctBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
+
     @Override
     protected Class<?> getBeanClass(Element element) {
         return Qct.class;

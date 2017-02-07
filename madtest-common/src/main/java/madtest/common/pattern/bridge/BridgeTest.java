@@ -4,6 +4,7 @@ package madtest.common.pattern.bridge;
  * Created by qct on 2015/7/10.
  */
 public class BridgeTest {
+
     public static void main(String[] args) {
         TV sonyTV = new SonyTV();
         LogitechRemoteControl lrc1 = new LogitechRemoteControl(sonyTV);

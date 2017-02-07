@@ -15,8 +15,8 @@
  */
 package madtest.common.netty.study.chapter11;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
+import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -36,9 +36,8 @@ import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker;
 import io.netty.handler.codec.http.websocketx.WebSocketServerHandshakerFactory;
 import io.netty.util.CharsetUtil;
-
-import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
-import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author lilinfeng
@@ -46,17 +45,18 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
  * @date 2014年2月14日
  */
 public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> {
+
     private static final Logger logger = Logger
-            .getLogger(WebSocketServerHandler.class.getName());
+        .getLogger(WebSocketServerHandler.class.getName());
 
     private WebSocketServerHandshaker handshaker;
 
     private static void sendHttpResponse(ChannelHandlerContext ctx,
-                                         FullHttpRequest req, FullHttpResponse res) {
+        FullHttpRequest req, FullHttpResponse res) {
         // 返回应答给客户端
         if (res.status().code() != 200) {
             ByteBuf buf = Unpooled.copiedBuffer(res.status().toString(),
-                    CharsetUtil.UTF_8);
+                CharsetUtil.UTF_8);
             res.content().writeBytes(buf);
             buf.release();
             HttpHeaderUtil.setContentLength(res, res.content().readableBytes());
@@ -71,7 +71,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
 
     @Override
     public void messageReceived(ChannelHandlerContext ctx, Object msg)
-            throws Exception {
+        throws Exception {
         // 传统的HTTP接入
         if (msg instanceof FullHttpRequest) {
             handleHttpRequest(ctx, (FullHttpRequest) msg);
@@ -88,47 +88,47 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
     }
 
     private void handleHttpRequest(ChannelHandlerContext ctx,
-                                   FullHttpRequest req) throws Exception {
+        FullHttpRequest req) throws Exception {
 
         // 如果HTTP解码失败，返回HHTP异常
         if (!req.decoderResult().isSuccess()
-                || (!"websocket".equals(req.headers().get("Upgrade")))) {
+            || (!"websocket".equals(req.headers().get("Upgrade")))) {
             sendHttpResponse(ctx, req, new DefaultFullHttpResponse(HTTP_1_1,
-                    BAD_REQUEST));
+                BAD_REQUEST));
             return;
         }
 
         // 构造握手响应返回，本机测试
         WebSocketServerHandshakerFactory wsFactory = new WebSocketServerHandshakerFactory(
-                "ws://localhost:8080/websocket", null, false);
+            "ws://localhost:8080/websocket", null, false);
         handshaker = wsFactory.newHandshaker(req);
         if (handshaker == null) {
             WebSocketServerHandshakerFactory
-                    .sendUnsupportedVersionResponse(ctx.channel());
+                .sendUnsupportedVersionResponse(ctx.channel());
         } else {
             handshaker.handshake(ctx.channel(), req);
         }
     }
 
     private void handleWebSocketFrame(ChannelHandlerContext ctx,
-                                      WebSocketFrame frame) {
+        WebSocketFrame frame) {
 
         // 判断是否是关闭链路的指令
         if (frame instanceof CloseWebSocketFrame) {
             handshaker.close(ctx.channel(),
-                    (CloseWebSocketFrame) frame.retain());
+                (CloseWebSocketFrame) frame.retain());
             return;
         }
         // 判断是否是Ping消息
         if (frame instanceof PingWebSocketFrame) {
             ctx.channel().write(
-                    new PongWebSocketFrame(frame.content().retain()));
+                new PongWebSocketFrame(frame.content().retain()));
             return;
         }
         // 本例程仅支持文本消息，不支持二进制消息
         if (!(frame instanceof TextWebSocketFrame)) {
             throw new UnsupportedOperationException(String.format(
-                    "%s frame types not supported", frame.getClass().getName()));
+                "%s frame types not supported", frame.getClass().getName()));
         }
 
         // 返回应答消息
@@ -137,14 +137,14 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
             logger.fine(String.format("%s received %s", ctx.channel(), request));
         }
         ctx.channel().write(
-                new TextWebSocketFrame(request
-                        + " , 欢迎使用Netty WebSocket服务，现在时刻："
-                        + new java.util.Date().toString()));
+            new TextWebSocketFrame(request
+                + " , 欢迎使用Netty WebSocket服务，现在时刻："
+                + new java.util.Date().toString()));
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
-            throws Exception {
+        throws Exception {
         cause.printStackTrace();
         ctx.close();
     }

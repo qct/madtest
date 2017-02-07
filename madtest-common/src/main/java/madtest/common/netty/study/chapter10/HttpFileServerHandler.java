@@ -1,14 +1,5 @@
 package madtest.common.netty.study.chapter10;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.RandomAccessFile;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.util.regex.Pattern;
-
-import javax.activation.MimetypesFileTypeMap;
-
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
@@ -31,13 +22,22 @@ import io.netty.handler.codec.http.HttpVersion;
 import io.netty.handler.codec.http.LastHttpContent;
 import io.netty.handler.stream.ChunkedFile;
 import io.netty.util.CharsetUtil;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.RandomAccessFile;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.regex.Pattern;
+import javax.activation.MimetypesFileTypeMap;
 
 /**
  * Created by quchentao on 15/11/4.
  */
 public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
+
     private static final Pattern INSECURE_URI = Pattern.compile(".*[<>&\"].*");
-    private static final Pattern ALLOWED_FILE_NAME = Pattern.compile("[A-Za-z0-9][-_A-Za-z0-9\\.]*");
+    private static final Pattern ALLOWED_FILE_NAME = Pattern
+        .compile("[A-Za-z0-9][-_A-Za-z0-9\\.]*");
     private final String url;
 
     public HttpFileServerHandler(String url) {
@@ -45,7 +45,8 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
     }
 
     private static void sendListing(ChannelHandlerContext ctx, File dir) {
-        FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
+        FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,
+            HttpResponseStatus.OK);
         response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/html; charset=UTF-8");
         StringBuilder buf = new StringBuilder();
         String dirPath = dir.getPath();
@@ -81,25 +82,28 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
     }
 
     private static void sendRedirect(ChannelHandlerContext ctx, String newUri) {
-        FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.FOUND);
+        FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,
+            HttpResponseStatus.FOUND);
         response.headers().set(HttpHeaderNames.LOCATION, newUri);
         ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
     }
 
     private static void sendError(ChannelHandlerContext ctx, HttpResponseStatus status) {
         FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, status,
-                Unpooled.copiedBuffer("Failure: " + status.toString() + "\r\n", CharsetUtil.UTF_8));
+            Unpooled.copiedBuffer("Failure: " + status.toString() + "\r\n", CharsetUtil.UTF_8));
         response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
         ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
     }
 
     private static void setContentTypeHeader(HttpResponse response, File file) {
         MimetypesFileTypeMap mimeTypesMap = new MimetypesFileTypeMap();
-        response.headers().set(HttpHeaderNames.CONTENT_TYPE, mimeTypesMap.getContentType(file.getPath()));
+        response.headers()
+            .set(HttpHeaderNames.CONTENT_TYPE, mimeTypesMap.getContentType(file.getPath()));
     }
 
     @Override
-    protected void messageReceived(ChannelHandlerContext ctx, FullHttpRequest request) throws Exception {
+    protected void messageReceived(ChannelHandlerContext ctx, FullHttpRequest request)
+        throws Exception {
         if (!request.decoderResult().isSuccess()) {
             sendError(ctx, HttpResponseStatus.BAD_REQUEST);
             return;
@@ -139,7 +143,8 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
             return;
         }
         long fileLength = randomAccessFile.length();
-        HttpResponse response = new DefaultHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
+        HttpResponse response = new DefaultHttpResponse(HttpVersion.HTTP_1_1,
+            HttpResponseStatus.OK);
         HttpHeaderUtil.setContentLength(response, fileLength);
         setContentTypeHeader(response, file);
         if (HttpHeaderUtil.isKeepAlive(request)) {
@@ -147,15 +152,17 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
         }
         ctx.write(response);
         ChannelFuture sendFileFuture;
-        sendFileFuture = ctx.write(new ChunkedFile(randomAccessFile, 0, fileLength, 8192), ctx.newProgressivePromise());
+        sendFileFuture = ctx.write(new ChunkedFile(randomAccessFile, 0, fileLength, 8192),
+            ctx.newProgressivePromise());
         sendFileFuture.addListener(new ChannelProgressiveFutureListener() {
             @Override
-            public void operationProgressed(ChannelProgressiveFuture future, long progress, long total) throws Exception {
+            public void operationProgressed(ChannelProgressiveFuture future, long progress,
+                long total) throws Exception {
                 if (total < 0) { // total unknown
                     System.err.println("Transfer progress: " + progress);
                 } else {
                     System.err.println("Transfer progress: " + progress + " / "
-                            + total);
+                        + total);
                 }
             }
 
@@ -196,8 +203,8 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
         }
         uri = uri.replace('/', File.separatorChar);
         if (uri.contains(File.separator + '.')
-                || uri.contains('.' + File.separator) || uri.startsWith(".")
-                || uri.endsWith(".") || INSECURE_URI.matcher(uri).matches()) {
+            || uri.contains('.' + File.separator) || uri.startsWith(".")
+            || uri.endsWith(".") || INSECURE_URI.matcher(uri).matches()) {
             return null;
         }
 //        return System.getProperty("user.dir") + File.separator + uri;

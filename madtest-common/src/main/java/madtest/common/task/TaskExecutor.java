@@ -1,11 +1,10 @@
 package madtest.common.task;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by qct on 2016/3/21.
@@ -14,12 +13,13 @@ import java.util.concurrent.TimeUnit;
  */
 public class TaskExecutor {
 
-    private static Logger logger = LoggerFactory.getLogger(TaskExecutor.class);
     static Integer i = 0;
     static Integer result = -1;
+    private static Logger logger = LoggerFactory.getLogger(TaskExecutor.class);
 
     public int execute() throws InterruptedException {
-        ScheduledExecutorService singleThreadScheduledPool = Executors.newSingleThreadScheduledExecutor();
+        ScheduledExecutorService singleThreadScheduledPool = Executors
+            .newSingleThreadScheduledExecutor();
         singleThreadScheduledPool.scheduleWithFixedDelay(new Runnable() {
             @Override
             public void run() {
@@ -33,7 +33,8 @@ public class TaskExecutor {
             Thread.sleep(1000);
             logger.debug("while result: " + result);
             if (result >= 5) {
-                logger.debug("singleThreadScheduledPool is shutdown: " + singleThreadScheduledPool.isShutdown());
+                logger.debug("singleThreadScheduledPool is shutdown: " + singleThreadScheduledPool
+                    .isShutdown());
                 if (!singleThreadScheduledPool.isShutdown()) {
                     singleThreadScheduledPool.shutdownNow();
                     return result;

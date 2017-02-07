@@ -8,6 +8,7 @@ import org.springframework.aop.PointcutAdvisor;
  * Created by alex on 2016/10/26.
  */
 public class TestAdvisor implements PointcutAdvisor {
+
     @Override
     public Pointcut getPointcut() {
         return new TestPointcut();

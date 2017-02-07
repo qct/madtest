@@ -1,19 +1,19 @@
 package madtest.common.postgresql;
 
-import org.postgresql.core.Version;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import org.postgresql.core.Version;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by alex on 2016/10/21.
  */
 public class TestPostgresql {
+
     public static void main(String[] args) {
         Connection con = null;
         Statement st = null;

@@ -6,6 +6,7 @@ import org.apache.commons.pool2.impl.GenericObjectPool;
  * Created by qct on 2015/5/5.
  */
 public class SimpleThread extends Thread {
+
     private boolean isRunning;
     private GenericObjectPool pool;
 

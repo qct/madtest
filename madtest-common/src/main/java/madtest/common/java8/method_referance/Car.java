@@ -8,6 +8,7 @@ import java.util.function.Supplier;
  * Created by qct on 2015/6/18.
  */
 public class Car {
+
     public static Car create(final Supplier<Car> supplier) {
         return supplier.get();
     }

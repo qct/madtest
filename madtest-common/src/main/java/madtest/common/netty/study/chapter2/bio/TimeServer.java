@@ -8,6 +8,7 @@ import java.net.Socket;
  * Created by quchentao on 15/10/21.
  */
 public class TimeServer {
+
     public static void main(String[] args) throws IOException {
         int port = 8080;
         if (args != null && args.length > 0) {

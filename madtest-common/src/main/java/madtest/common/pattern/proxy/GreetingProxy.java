@@ -4,6 +4,7 @@ package madtest.common.pattern.proxy;
  * Created by alex on 2016/8/26.
  */
 public class GreetingProxy implements Greeting {
+
     private GreetingImpl greetingImpl;
 
     public GreetingProxy(GreetingImpl greetingImpl) {

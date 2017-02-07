@@ -7,6 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * Created by qct on 2015/7/9.
  */
 public class CustomSchemaTest {
+
     public static void main(String[] args) {
         CustomSchemaTest test = new CustomSchemaTest();
         test.testSchema();

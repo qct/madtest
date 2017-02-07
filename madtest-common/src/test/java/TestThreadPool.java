@@ -1,10 +1,8 @@
+import javax.sql.DataSource;
+import madtest.common.pool.StartTaskThread;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-
-import javax.sql.DataSource;
-
-import madtest.common.pool.StartTaskThread;
 
 /**
  * Created by qct on 2015/5/6.

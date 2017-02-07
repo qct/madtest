@@ -8,6 +8,7 @@ import java.util.Map;
  * Created by qct on 2016/3/6.
  */
 public class SimpleThreadLocal {
+
     private Map valueMap = Collections.synchronizedMap(new HashMap());
 
     public void set(Object newValue) {

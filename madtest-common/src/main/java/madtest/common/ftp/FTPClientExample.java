@@ -1,5 +1,13 @@
 package madtest.common.ftp;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import org.apache.commons.net.PrintCommandListener;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
@@ -13,45 +21,40 @@ import org.apache.commons.net.io.CopyStreamEvent;
 import org.apache.commons.net.io.CopyStreamListener;
 import org.apache.commons.net.util.TrustManagerUtils;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
 /**
  * Created by qct on 2015/6/17.
  */
 public final class FTPClientExample {
 
     public static final String USAGE =
-            "Usage: ftp [options] <hostname> <username> <password> [<remote file> [<local file>]]\n" +
-                    "\nDefault behavior is to download a file and use ASCII transfer mode.\n" +
-                    "\t-a - use local active mode (default is local passive)\n" +
-                    "\t-A - anonymous login (omit username and password parameters)\n" +
-                    "\t-b - use binary transfer mode\n" +
-                    "\t-c cmd - issue arbitrary command (remote is used as a parameter if provided) \n" +
-                    "\t-d - list directory details using MLSD (remote is used as the pathname if provided)\n" +
-                    "\t-e - use EPSV with IPv4 (default false)\n" +
-                    "\t-f - issue FEAT command (remote and local files are ignored)\n" +
-                    "\t-h - list hidden files (applies to -l and -n only)\n" +
-                    "\t-k secs - use keep-alive timer (setControlKeepAliveTimeout)\n" +
-                    "\t-l - list files using LIST (remote is used as the pathname if provided)\n" +
-                    "\t     Files are listed twice: first in raw mode, then as the formatted parsed data.\n" +
-                    "\t-L - use lenient future dates (server dates may be up to 1 day into future)\n" +
-                    "\t-n - list file names using NLST (remote is used as the pathname if provided)\n" +
-                    "\t-p true|false|protocol[,true|false] - use FTPSClient with the specified protocol and/or isImplicit setting\n" +
-                    "\t-s - store file on server (upload)\n" +
-                    "\t-t - list file details using MLST (remote is used as the pathname if provided)\n" +
-                    "\t-w msec - wait time for keep-alive reply (setControlKeepAliveReplyTimeout)\n" +
-                    "\t-T  all|valid|none - use one of the built-in TrustManager implementations (none = JVM default)\n" +
-                    "\t-PrH server[:port] - HTTP Proxy host and optional port[80] \n" +
-                    "\t-PrU user - HTTP Proxy server username\n" +
-                    "\t-PrP password - HTTP Proxy server password\n" +
-                    "\t-# - add hash display during transfers\n";
+        "Usage: ftp [options] <hostname> <username> <password> [<remote file> [<local file>]]\n" +
+            "\nDefault behavior is to download a file and use ASCII transfer mode.\n" +
+            "\t-a - use local active mode (default is local passive)\n" +
+            "\t-A - anonymous login (omit username and password parameters)\n" +
+            "\t-b - use binary transfer mode\n" +
+            "\t-c cmd - issue arbitrary command (remote is used as a parameter if provided) \n" +
+            "\t-d - list directory details using MLSD (remote is used as the pathname if provided)\n"
+            +
+            "\t-e - use EPSV with IPv4 (default false)\n" +
+            "\t-f - issue FEAT command (remote and local files are ignored)\n" +
+            "\t-h - list hidden files (applies to -l and -n only)\n" +
+            "\t-k secs - use keep-alive timer (setControlKeepAliveTimeout)\n" +
+            "\t-l - list files using LIST (remote is used as the pathname if provided)\n" +
+            "\t     Files are listed twice: first in raw mode, then as the formatted parsed data.\n"
+            +
+            "\t-L - use lenient future dates (server dates may be up to 1 day into future)\n" +
+            "\t-n - list file names using NLST (remote is used as the pathname if provided)\n" +
+            "\t-p true|false|protocol[,true|false] - use FTPSClient with the specified protocol and/or isImplicit setting\n"
+            +
+            "\t-s - store file on server (upload)\n" +
+            "\t-t - list file details using MLST (remote is used as the pathname if provided)\n" +
+            "\t-w msec - wait time for keep-alive reply (setControlKeepAliveReplyTimeout)\n" +
+            "\t-T  all|valid|none - use one of the built-in TrustManager implementations (none = JVM default)\n"
+            +
+            "\t-PrH server[:port] - HTTP Proxy host and optional port[80] \n" +
+            "\t-PrU user - HTTP Proxy server username\n" +
+            "\t-PrP password - HTTP Proxy server password\n" +
+            "\t-# - add hash display during transfers\n";
 
     public static void main(String[] args) throws UnknownHostException {
         boolean storeFile = false, binaryTransfer = false, error = false, listFiles = false, listNames = false, hidden = false;
@@ -79,7 +82,8 @@ public final class FTPClientExample {
                 localActive = true;
             } else if (args[base].equals("-A")) {
                 username = "anonymous";
-                password = System.getProperty("user.name") + "@" + InetAddress.getLocalHost().getHostName();
+                password = System.getProperty("user.name") + "@" + InetAddress.getLocalHost()
+                    .getHostName();
             } else if (args[base].equals("-b")) {
                 binaryTransfer = true;
             } else if (args[base].equals("-c")) {
@@ -217,7 +221,8 @@ public final class FTPClientExample {
             } else {
                 ftp.connect(server);
             }
-            System.out.println("Connected to " + server + " on " + (port > 0 ? port : ftp.getDefaultPort()));
+            System.out.println(
+                "Connected to " + server + " on " + (port > 0 ? port : ftp.getDefaultPort()));
 
             // After connection attempt, you should check the reply code to verify
             // success.
@@ -383,12 +388,13 @@ public final class FTPClientExample {
 
             //            @Override
             public void bytesTransferred(CopyStreamEvent event) {
-                bytesTransferred(event.getTotalBytesTransferred(), event.getBytesTransferred(), event.getStreamSize());
+                bytesTransferred(event.getTotalBytesTransferred(), event.getBytesTransferred(),
+                    event.getStreamSize());
             }
 
             //            @Override
             public void bytesTransferred(long totalBytesTransferred,
-                                         int bytesTransferred, long streamSize) {
+                int bytesTransferred, long streamSize) {
                 long megs = totalBytesTransferred / 1000000;
                 for (long l = megsTotal; l < megs; l++) {
                     System.err.print("#");

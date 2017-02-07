@@ -72,6 +72,7 @@ public class PropertiesUtil {
     }
 
     private static class PropertiesUtilHolder {
+
         private static final PropertiesUtil INSTANCE = new PropertiesUtil();
     }
 

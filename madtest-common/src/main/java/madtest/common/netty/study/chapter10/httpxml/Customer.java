@@ -6,6 +6,7 @@ import java.util.List;
  * Customer information.
  */
 public class Customer {
+
     private long customerNumber;
 
     /**
@@ -63,8 +64,8 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer [customerNumber=" + customerNumber + ", firstName="
-                + firstName + ", lastName=" + lastName + ", middleNames="
-                + middleNames + "]";
+            + firstName + ", lastName=" + lastName + ", middleNames="
+            + middleNames + "]";
     }
 
 }

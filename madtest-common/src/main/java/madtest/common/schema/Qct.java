@@ -4,6 +4,7 @@ package madtest.common.schema;
  * Created by qct on 2015/7/9.
  */
 public class Qct {
+
     private String id;
     private String name;
     private int age;
