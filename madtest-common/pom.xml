@@ -294,6 +294,7 @@
     </dependencies>
 
     <build>
+        <finalName>madtest-common</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

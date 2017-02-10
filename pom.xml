@@ -14,6 +14,7 @@
         <module>madtest-persist</module>
         <module>madtest-websocket</module>
         <module>madtest-servlet3</module>
+        <module>madtest-web2</module>
     </modules>
 
     <name>madtest</name>
