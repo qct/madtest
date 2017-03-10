@@ -1,6 +1,8 @@
 package madtest.common.guava.basic;
 
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +22,12 @@ public class NullTest {
 //        testNullObject();
 //        sayHello(null);
 
-        testNullObject();
+//        testNullObject();
+        testCheckNull(null);
+    }
+
+    public static void testCheckNull(NullTest nt) {
+        checkNotNull(nt);
     }
 
     public static void testNull() {

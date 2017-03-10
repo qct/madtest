@@ -1,5 +1,7 @@
 package madtest.common.clone;
 
+import java.util.UUID;
+
 /**
  * Created by alex on 2016/10/18.
  */
@@ -22,6 +24,8 @@ public class Student2 implements Cloneable {
         s2.p.name = "lisi";
         s2.p.age = 30;
         System.out.println("name=" + s1.p.name + "," + "age=" + s1.p.age);//学生1的教授成为lisi,age为30。
+
+        System.out.println(UUID.randomUUID());
     }
 
     public Object clone() {
