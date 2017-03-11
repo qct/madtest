@@ -2,6 +2,7 @@ package madtest.common.java8.function;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * <p>Created by Damon.Q on 2017/3/10.
@@ -43,6 +44,8 @@ public class Student {
             student -> student.grade >= 8,
             student -> student.feeDiscount = 20.0);
         student2.printFee();
+
+        Supplier<Student> st = () -> new Student("damon", "q", 10.0);
     }
 }
 
