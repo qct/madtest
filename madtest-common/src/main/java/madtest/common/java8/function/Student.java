@@ -25,6 +25,14 @@ public class Student {
         this.grade = grade;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public Double getGrade() {
+        return grade;
+    }
+
     public void printFee() {
         Double newFee = baseFee - ((baseFee * feeDiscount) / 100);
         System.out.println("The fee after discount: " + newFee);
