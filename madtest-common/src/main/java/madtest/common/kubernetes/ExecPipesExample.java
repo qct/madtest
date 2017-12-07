@@ -20,7 +20,7 @@ import io.fabric8.kubernetes.client.DefaultKubernetesClient;
 import io.fabric8.kubernetes.client.KubernetesClient;
 import io.fabric8.kubernetes.client.KubernetesClientException;
 import io.fabric8.kubernetes.client.dsl.ExecWatch;
-import io.fabric8.kubernetes.client.utils.InputStreamPumper;
+import io.fabric8.kubernetes.client.utils.NonBlockingInputStreamPumper;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -47,7 +47,7 @@ public class ExecPipesExample {
                 .redirectingInput()
                 .redirectingOutput()
                 .exec();
-            InputStreamPumper pump = new InputStreamPumper(watch.getOutput(),
+            NonBlockingInputStreamPumper pump = new NonBlockingInputStreamPumper(watch.getOutput(),
                 new SystemOutCallback())) {
 
             executorService.submit(pump);

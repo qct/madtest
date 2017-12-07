@@ -19,7 +19,7 @@ public class TimeServerHandler extends IoHandlerAdapter {
     public void messageReceived(IoSession session, Object message) throws Exception {
         String str = message.toString();
         if (str.trim().equalsIgnoreCase("quit")) {
-            session.close(true);
+            session.closeNow();
         }
         Date date = new Date();
         session.write(date.toString());

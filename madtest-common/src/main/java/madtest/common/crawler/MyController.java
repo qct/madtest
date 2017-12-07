@@ -9,7 +9,7 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 /**
  * Created by quchentao on 16/1/2.
  */
-public class Controller {
+public class MyController {
 
     public static void main(String[] args) throws Exception {
         String crawlStorageFolder = "/Users/quchentao/crawl/root";

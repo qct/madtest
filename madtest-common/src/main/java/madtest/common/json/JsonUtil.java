@@ -296,8 +296,7 @@ public class JsonUtil {
     public static List<?> toListObject(String json, Class<?>... elementClasses) {
         List<Class<?>> list = null;
         try {
-            JavaType javaType = MAPPER.getTypeFactory()
-                .constructParametrizedType(ArrayList.class, ArrayList.class, elementClasses);
+            JavaType javaType = MAPPER.getTypeFactory().constructParametricType(ArrayList.class, elementClasses);
             list = MAPPER.readValue(json, javaType);
         } catch (IOException ex) {
             throw new RuntimeException("JSON格式转换错误。");

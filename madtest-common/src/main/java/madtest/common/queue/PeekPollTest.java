@@ -2,8 +2,6 @@ package madtest.common.queue;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
-import java.util.concurrent.ConcurrentMap;
-import org.eclipse.jetty.util.ConcurrentArrayQueue;
 
 /**
  * <p>Created by Damon.Q on 2017/5/6.

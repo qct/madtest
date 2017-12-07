@@ -14,15 +14,14 @@ public class ImmutableTest {
     public static void main(String[] args) {
         ImmutableSet<Integer> set = ImmutableSet.of(1, 2);
         ImmutableSortedSet<String> set2 = ImmutableSortedSet.of("b", "a", "d", "c");
-        UnmodifiableIterator<String> iter = set2.iterator();
-        while (iter.hasNext()) {
-            System.out.println(iter.next());
+        for (String aSet2 : set2) {
+            System.out.println(aSet2);
         }
 
         ImmutableSet<String> foobar = ImmutableSet.of("foo", "bar", "baz");
         ImmutableList<String> defensiveCopy = ImmutableList.copyOf(foobar);
 
-        HashMultiset hashMultiset = HashMultiset.create();
+        HashMultiset<String> hashMultiset = HashMultiset.create();
         hashMultiset.add("b");
         hashMultiset.add("b");
         hashMultiset.add("b");

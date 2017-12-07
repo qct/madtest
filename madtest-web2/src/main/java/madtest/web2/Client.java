@@ -4,6 +4,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.client.AsyncRestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 /**
  * <p>Created by Damon.Q on 2017/2/10.
@@ -27,5 +29,9 @@ public class Client {
             }
         });
         System.out.println("==no wait");
+
+        WebClient webClient = WebClient.create("http://127.0.0.1:8080/madtest-web2/api");
+        Mono<User> userMono = webClient.get().exchange().flatMap(response -> response.bodyToMono(User.class));
+        System.out.println(userMono.block());
     }
 }
