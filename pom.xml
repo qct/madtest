@@ -24,6 +24,7 @@
         <module>madtest-websocket</module>
         <module>madtest-web2</module>
         <module>madtest-thymeleaf</module>
+        <module>madtest-concurrency</module>
     </modules>
 
     <properties>
