@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 /**
  * Annotation that indicates an operation should be retried if the specified exception is encountered.
  *
- * @author Damon.Q
+ * @author qct
  * @date 2017/12/27
  * @since 1.0
  */
