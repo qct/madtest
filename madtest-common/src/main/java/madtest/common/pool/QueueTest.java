@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 import madtest.common.concurrent.ExecutorServiceUtil;
 
 /**
- * <p>Created by Damon.Q on 2017/10/4.
+ * <p>Created by qct on 2017/10/4.
  */
 public class QueueTest {
 

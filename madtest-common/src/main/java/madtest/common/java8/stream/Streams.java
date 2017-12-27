@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * <p>Created by Damon.Q on 2017/3/11.
+ * <p>Created by qct on 2017/3/11.
  */
 public class Streams {
 

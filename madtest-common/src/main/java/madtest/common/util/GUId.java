@@ -10,7 +10,7 @@ import java.net.UnknownHostException;
 import java.nio.channels.FileChannel;
 
 /**
- * <p>Created by Damon.Q on 2017/4/18.
+ * <p>Created by qct on 2017/4/18.
  */
 public class GUId {
 

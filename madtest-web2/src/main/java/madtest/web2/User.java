@@ -1,7 +1,7 @@
 package madtest.web2;
 
 /**
- * <p>Created by Damon.Q on 2017/2/10.
+ * <p>Created by qct on 2017/2/10.
  */
 public class User {
     private String name;

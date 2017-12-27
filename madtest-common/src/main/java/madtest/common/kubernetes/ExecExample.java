@@ -19,7 +19,6 @@ import io.fabric8.kubernetes.client.DefaultKubernetesClient;
 import io.fabric8.kubernetes.client.KubernetesClient;
 import io.fabric8.kubernetes.client.dsl.ExecListener;
 import io.fabric8.kubernetes.client.dsl.ExecWatch;
-import java.io.IOException;
 import okhttp3.Response;
 
 public class ExecExample {
@@ -58,7 +57,7 @@ public class ExecExample {
         }
 
         @Override
-        public void onFailure(IOException e, Response response) {
+        public void onFailure(Throwable throwable, Response response) {
             System.err.println("shell barfed");
         }
 

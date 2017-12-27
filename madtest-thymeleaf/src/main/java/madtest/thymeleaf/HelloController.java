@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * <p>Created by Damon.Q on 2017/2/11.
+ * <p>Created by qct on 2017/2/11.
  */
 @Controller
 public class HelloController {
