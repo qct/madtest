@@ -4,7 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 /**
- * <p>Created by Damon.Q on 2017/5/6.
+ * <p>Created by qct on 2017/5/6.
  */
 public class PeekPollTest {
 

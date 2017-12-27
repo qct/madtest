@@ -1,7 +1,7 @@
 package madtest.common.effective;
 
 /**
- * <p>Created by Damon.Q on 2017/3/13.
+ * <p>Created by qct on 2017/3/13.
  */
 public class OuterClass {
 

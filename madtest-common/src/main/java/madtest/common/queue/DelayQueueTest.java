@@ -5,7 +5,7 @@ import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
 /**
- * <p>Created by Damon.Q on 2017/2/23.
+ * <p>Created by qct on 2017/2/23.
  */
 public class DelayQueueTest {
 

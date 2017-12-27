@@ -4,7 +4,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * <p>Created by Damon.Q on 2017/3/11.
+ * <p>Created by qct on 2017/3/11.
  */
 public class RetryableOperationTest {
 

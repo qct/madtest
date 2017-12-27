@@ -3,7 +3,7 @@ package madtest.common.spring.lifecycle;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
- * <p>Created by Damon.Q on 2017/4/27.
+ * <p>Created by qct on 2017/4/27.
  */
 public class Main {
 

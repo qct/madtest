@@ -4,7 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * <p>Created by Damon.Q on 2017/10/9.
+ * <p>Created by qct on 2017/10/9.
  */
 public class ExecutorServiceUtil {
     public static void shutdownAndAwaitTermination(ExecutorService pool) {

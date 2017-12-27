@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 import madtest.common.java8.function.Student;
 
 /**
- * <p>Created by Damon.Q on 2017/3/11.
+ * <p>Created by qct on 2017/3/11.
  */
 public class ReduceTest {
 

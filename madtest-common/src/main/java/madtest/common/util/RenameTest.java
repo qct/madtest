@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * <p>Created by Damon.Q on 2017/4/22.
+ * <p>Created by qct on 2017/4/22.
  */
 public class RenameTest {
 

@@ -5,7 +5,7 @@ import java.util.concurrent.BlockingQueue;
 import javax.sound.midi.Soundbank;
 
 /**
- * <p>Created by Damon.Q on 2017/4/8.
+ * <p>Created by qct on 2017/4/8.
  */
 public class BlockingQueueTest {
 

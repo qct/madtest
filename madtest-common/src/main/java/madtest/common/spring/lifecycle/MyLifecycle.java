@@ -4,7 +4,7 @@ import org.springframework.context.SmartLifecycle;
 import org.springframework.stereotype.Component;
 
 /**
- * <p>Created by Damon.Q on 2017/4/27.
+ * <p>Created by qct on 2017/4/27.
  */
 @Component
 public class MyLifecycle implements SmartLifecycle {

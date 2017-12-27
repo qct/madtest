@@ -18,7 +18,7 @@ import java.util.Map;
 import javax.crypto.Cipher;
 
 /**
- * Created by Damon.Q on 2017/1/17.
+ * Created by qct on 2017/1/17.
  */
 public class RSAUtil {
 

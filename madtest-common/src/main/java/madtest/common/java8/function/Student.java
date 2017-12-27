@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /**
- * <p>Created by Damon.Q on 2017/3/10.
+ * <p>Created by qct on 2017/3/10.
  */
 public class Student {
 
@@ -53,7 +53,7 @@ public class Student {
             student -> student.feeDiscount = 20.0);
         student2.printFee();
 
-        Supplier<Student> st = () -> new Student("damon", "q", 10.0);
+        Supplier<Student> st = () -> new Student("alex", "q", 10.0);
     }
 }
 

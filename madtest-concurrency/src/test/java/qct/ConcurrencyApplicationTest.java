@@ -1,38 +1,68 @@
 package qct;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.scheduling.concurrent.CustomizableThreadFactory;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * Unit test for simple App.
  */
-public class ConcurrencyApplicationTest
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public ConcurrencyApplicationTest( String testName )
-    {
-        super( testName );
-    }
+@SpringBootTest
+@RunWith(SpringRunner.class)
+public class ConcurrencyApplicationTest {
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( ConcurrencyApplicationTest.class );
-    }
+    private static final Logger logger = LoggerFactory.getLogger(ConcurrentService.class);
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    private static final ExecutorService EXECUTOR_SERVICE = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.SECONDS, new
+        LinkedBlockingQueue<>(), new CustomizableThreadFactory("update-svc-"));
+
+    @Autowired
+    private SaveService saveService;
+
+    @Autowired
+    private UpdateService1 updateService1;
+
+    @Autowired
+    private UpdateService2 updateService2;
+
+    @Test
+    public void testConcurrency() {
+        Customer c = new Customer("a", "b");
+        saveService.saveOne(c);
+
+        logger.info("ConcurrentService begin");
+
+        EXECUTOR_SERVICE.submit(() -> {
+            try {
+                Customer update = updateService2.update(c);
+                logger.debug("after update 2: {}", update);
+            } catch (Exception e) {
+                logger.error("update 2 failed");
+                e.printStackTrace();
+            }
+        });
+
+        try {
+            Customer update = updateService1.update(c);
+            logger.debug("after update 1: {}", update);
+        } catch (Exception e) {
+            logger.error("update 1 failed");
+            e.printStackTrace();
+        }
+
+        try {
+            Thread.sleep(5000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

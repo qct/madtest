@@ -26,7 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Created by Damon.Q on 2016/12/16.
+ * Created by qct on 2016/12/16.
  */
 public class HttpClientUtil {
 

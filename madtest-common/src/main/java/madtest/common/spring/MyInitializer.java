@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 
 /**
- * Created by Damon.Q on 2017/2/3.
+ * Created by qct on 2017/2/3.
  */
 public class MyInitializer implements InitializingBean {
 
