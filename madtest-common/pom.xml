@@ -277,6 +277,17 @@
             <artifactId>auto-common</artifactId>
             <version>0.9</version>
         </dependency>
+        <dependency>
+            <groupId>org.ujmp</groupId>
+            <artifactId>ujmp-core</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.squareup</groupId>
+            <artifactId>javapoet</artifactId>
+            <version>1.10.0</version>
+        </dependency>
 
         <!-- Log -->
         <dependency>
