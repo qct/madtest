@@ -45,7 +45,7 @@
         <fastjson.version>1.2.83</fastjson.version>
         <zookeeper.version>3.4.14</zookeeper.version>
         <spark-core.version>2.7.2</spark-core.version>
-        <guava.version>23.0</guava.version>
+        <guava.version>31.1-jre</guava.version>
         <commons-net.version>3.6</commons-net.version>
         <oauth2.version>1.0.0</oauth2.version>
         <jackson.version>2.12.6.1</jackson.version>
