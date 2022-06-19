@@ -1,6 +1,7 @@
 package madtest.common.redis;
 
 import com.alibaba.fastjson.JSON;
+import java.time.Duration;
 import madtest.common.util.PropConfig;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.slf4j.Logger;
@@ -12,8 +13,7 @@ import redis.clients.jedis.exceptions.JedisException;
 
 public class RedisUtil {
 
-    private static final PropertiesConfiguration REDIS_CONFIG = PropConfig
-        .getConfig("redis.properties");
+    private static final PropertiesConfiguration REDIS_CONFIG = PropConfig.getConfig("redis.properties");
     private static Logger log = LoggerFactory.getLogger(RedisUtil.class);
     private static JedisPool jedisPool = null;
 
@@ -29,8 +29,8 @@ public class RedisUtil {
 
             config.setMaxTotal(REDIS_CONFIG.getInt("redis.pool.max.total", config.getMaxTotal()));
             config.setMaxIdle(REDIS_CONFIG.getInt("redis.pool.max.idle", config.getMaxIdle()));
-            config.setMaxWaitMillis(
-                REDIS_CONFIG.getLong("redis.pool.max.wait.millis", config.getMaxWaitMillis()));
+            config.setMaxWait(Duration.ofMillis(
+                REDIS_CONFIG.getLong("redis.pool.max.wait.millis", config.getMaxWaitDuration().toMillis())));
             config.setTestOnBorrow(false);
             int timeout = REDIS_CONFIG.getInt("redis.pool.connection.timeout", 2000);
 
@@ -67,7 +67,7 @@ public class RedisUtil {
      */
     public static void returnResource(final Jedis jedis) {
         if (jedis != null && jedisPool != null) {
-//            jedisPool.returnResource(jedis);
+            //            jedisPool.returnResource(jedis);
             jedis.close();
         }
     }
@@ -117,10 +117,12 @@ public class RedisUtil {
      * 如果 key 已经存在， SETEX 命令将覆写旧值
      * </pre>
      */
-    public static void setex(String key, String value, int seconds) {
+    public static void setex(String key, String value, long seconds) {
         Jedis jedis = getJedisClient();
         try {
-            jedis.setex(key, seconds, value);
+            if (jedis != null) {
+                jedis.setex(key, seconds, value);
+            }
         } catch (Exception e) {
             log.error("setex-string-failed:" + key + "," + value + "," + seconds, e);
         } finally {

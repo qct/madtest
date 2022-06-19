@@ -55,12 +55,9 @@ public class HttpChunkedServerHandler extends SimpleChannelUpstreamHandler {
         HttpResponse response = new DefaultHttpResponse(HttpVersion.HTTP_1_1,
             HttpResponseStatus.OK);
         response.setChunked(true);
-        response.setHeader(HttpHeaders.Names.CONTENT_TYPE,
-            "text/html; charset=UTF-8");
-        response.addHeader(HttpHeaders.Names.CONNECTION,
-            HttpHeaders.Values.KEEP_ALIVE);
-        response.setHeader(HttpHeaders.Names.TRANSFER_ENCODING,
-            HttpHeaders.Values.CHUNKED);
+        response.headers().set(HttpHeaders.Names.CONTENT_TYPE, "text/html; charset=UTF-8");
+        response.headers().set(HttpHeaders.Names.CONNECTION, HttpHeaders.Values.KEEP_ALIVE);
+        response.headers().set(HttpHeaders.Names.TRANSFER_ENCODING, HttpHeaders.Values.CHUNKED);
 
         Channel chan = ctx.getChannel();
         chan.write(response);
@@ -88,7 +85,7 @@ public class HttpChunkedServerHandler extends SimpleChannelUpstreamHandler {
 
     private void sendError(ChannelHandlerContext ctx, HttpResponseStatus status) {
         HttpResponse response = new DefaultHttpResponse(HttpVersion.HTTP_1_1, status);
-        response.setHeader(HttpHeaders.Names.CONTENT_TYPE, "text/plain; charset=UTF-8");
+        response.headers().set(HttpHeaders.Names.CONTENT_TYPE, "text/plain; charset=UTF-8");
         response.setContent(ChannelBuffers.copiedBuffer(
             "Failure: " + status.toString() + "\r%n", CharsetUtil.UTF_8));
 

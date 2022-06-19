@@ -177,7 +177,7 @@ public class AuthorizeController {
         }
         String name = request.getParameter("name");
         String pwd = request.getParameter("pwd");
-        if (StringUtils.isEmpty(name) || StringUtils.isEmpty(pwd)) {
+        if (!StringUtils.hasText(name) || !StringUtils.hasText(pwd)) {
             return false;
         }
         try {

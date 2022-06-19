@@ -33,7 +33,7 @@ public class JedisUtil {
      * @param seconds 多少秒后过期
      * @return 1：设置了过期时间 0：没有设置过期时间/不能设置过期时间
      */
-    public long expire(String key, int seconds) {
+    public long expire(String key, long seconds) {
         if (key == null || key.equals("")) {
             return 0;
         }
@@ -130,7 +130,7 @@ public class JedisUtil {
      * @param key key值
      * @param seconds 过期时间 单位s
      */
-    public boolean addSet(String key, int seconds, String... value) {
+    public boolean addSet(String key, long seconds, String... value) {
         boolean result = addSet(key, value);
         if (result) {
             long i = expire(key, seconds);
@@ -311,7 +311,7 @@ public class JedisUtil {
      * @param key key值
      * @param seconds 过期时间 单位s
      */
-    public boolean addList(String key, int seconds, String... value) {
+    public boolean addList(String key, long seconds, String... value) {
         boolean result = addList(key, value);
         if (result) {
             long i = expire(key, seconds);
@@ -501,7 +501,7 @@ public class JedisUtil {
                 scanResult = jedis.hscan(domain, String.valueOf(cursor),
                     scanParams);
                 list.addAll(scanResult.getResult());
-                cursor = Integer.parseInt(scanResult.getStringCursor());
+                cursor = Integer.parseInt(scanResult.getCursor());
             } while (cursor > 0);
             return list;
         } catch (Exception ex) {
@@ -684,7 +684,7 @@ public class JedisUtil {
         return null;
     }
 
-    public boolean set(String key, String value, int second) {
+    public boolean set(String key, String value, long second) {
         ShardedJedis shardedJedis = null;
         try {
             shardedJedis = shardedJedisPool.getResource();

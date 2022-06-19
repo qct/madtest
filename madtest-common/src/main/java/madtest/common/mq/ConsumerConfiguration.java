@@ -10,10 +10,13 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
 
 /**
  * Created by qct on 2016/3/12.
  */
+@Configuration
 public class ConsumerConfiguration {
 
     // 指定队列名称 routingkey的名称默认为Queue的名称，使用Exchange类型为DirectExchange
@@ -43,7 +46,7 @@ public class ConsumerConfiguration {
         // default exchange.
         template.setRoutingKey(this.springQueueDemo);
         // Where we will synchronously receive messages from
-        template.setQueue(this.springQueueDemo);
+        template.setDefaultReceiveQueue(this.springQueueDemo);
         return template;
     }
 
