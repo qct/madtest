@@ -47,7 +47,7 @@
         <spark-core.version>2.7.2</spark-core.version>
         <guava.version>31.1-jre</guava.version>
         <commons-net.version>3.8.0</commons-net.version>
-        <oauth2.version>1.0.0</oauth2.version>
+        <oauth2.version>1.0.2</oauth2.version>
         <jackson.version>2.13.4</jackson.version>
         <jsr305.version>3.0.2</jsr305.version>
         <shiro.version>1.9.1</shiro.version>
