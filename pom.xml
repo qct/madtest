@@ -48,7 +48,7 @@
         <guava.version>31.1-jre</guava.version>
         <commons-net.version>3.6</commons-net.version>
         <oauth2.version>1.0.0</oauth2.version>
-        <jackson.version>2.12.6.1</jackson.version>
+        <jackson.version>2.13.4</jackson.version>
         <jsr305.version>3.0.2</jsr305.version>
         <shiro.version>1.9.1</shiro.version>
         <jackson-mapper-lgpl.version>1.9.13</jackson-mapper-lgpl.version>
