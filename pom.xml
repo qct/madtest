@@ -42,7 +42,7 @@
         <netty-all.version>5.0.0.Alpha2</netty-all.version>
         <jboss-marshalling.version>2.0.2.Final</jboss-marshalling.version>
         <mina-core.version>2.0.22</mina-core.version>
-        <fastjson.version>1.2.83</fastjson.version>
+        <fastjson.version>2.0.15</fastjson.version>
         <zookeeper.version>3.4.14</zookeeper.version>
         <spark-core.version>2.7.2</spark-core.version>
         <guava.version>31.1-jre</guava.version>
