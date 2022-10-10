@@ -15,7 +15,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <crawler4j.version>4.3</crawler4j.version>
+        <crawler4j.version>4.4.0</crawler4j.version>
     </properties>
 
     <dependencies>
