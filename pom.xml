@@ -43,7 +43,7 @@
         <jboss-marshalling.version>2.0.2.Final</jboss-marshalling.version>
         <mina-core.version>2.0.22</mina-core.version>
         <fastjson.version>2.0.15</fastjson.version>
-        <zookeeper.version>3.4.14</zookeeper.version>
+        <zookeeper.version>3.8.0</zookeeper.version>
         <spark-core.version>2.7.2</spark-core.version>
         <guava.version>31.1-jre</guava.version>
         <commons-net.version>3.8.0</commons-net.version>
