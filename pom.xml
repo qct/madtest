@@ -50,7 +50,7 @@
         <oauth2.version>1.0.2</oauth2.version>
         <jackson.version>2.13.4</jackson.version>
         <jsr305.version>3.0.2</jsr305.version>
-        <shiro.version>1.9.1</shiro.version>
+        <shiro.version>1.10.0</shiro.version>
         <jackson-mapper-lgpl.version>1.9.13</jackson-mapper-lgpl.version>
         <guava-retrying.version>2.0.0</guava-retrying.version>
         <commons-configuration.version>1.10</commons-configuration.version>
