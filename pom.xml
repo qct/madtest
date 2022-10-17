@@ -38,7 +38,7 @@
         <spring.version>5.3.20</spring.version>
         <msgpack.version>0.6.12</msgpack.version>
         <jibx.version>1.4.2</jibx.version>
-        <druid.version>1.1.6</druid.version>
+        <druid.version>1.2.13-SNSAPSHOT</druid.version>
         <netty-all.version>5.0.0.Alpha2</netty-all.version>
         <jboss-marshalling.version>2.0.2.Final</jboss-marshalling.version>
         <mina-core.version>2.0.22</mina-core.version>
